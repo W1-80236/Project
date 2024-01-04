@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/backg"
+    android:alpha="0.9"
+    android:padding="16dp"
+    android:gravity="center"
+    tools:context=".activity.LoginActivity">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Carnival Restaurant
+         Veg | NonVeg"
+        android:textStyle="italic"
+        android:layout_marginTop="120dp"
+        android:textColorHighlight="@color/black"
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/black"
+        android:textSize="40dp"/>
+
+    <TextView
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sign In"
+        android:layout_marginBottom="10dp"
+        android:textStyle="bold"
+        android:layout_marginLeft="60dp"
+        android:textColor="#6A1B9A"
+        android:textSize="50dp"/>
+
+    <EditText
+        android:textColor="@color/black"
+        android:layout_margin="10dp"
+        android:id="@+id/editMobile"
+        android:hint="Enter Your Mobile No "
+        android:textColorHint="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:textColor="@color/black"
+        android:layout_margin="10dp"
+        android:id="@+id/editPassword"
+        android:hint="Enter password"
+        android:textColorHint="@color/black"
+        android:inputType="textPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <CheckBox
+        android:id="@+id/checkboxRememberMe"
+        android:text="Remember Me"
+        android:textColor="@color/black"
+        android:layout_gravity="left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/textForgotPassword"
+        android:layout_marginTop="10dp"
+        android:onClick="forgotpassword"
+        android:textColor="@color/black"
+        android:text="Forgot Password?"
+        android:textSize="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+    <Button
+        android:onClick="login"
+        android:layout_marginTop="10dp"
+        android:text="Login"
+        android:backgroundTint="#E91E63"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/textRegister"
+        android:layout_marginTop="10dp"
+        android:onClick="register"
+        android:textColor="@color/black"
+        android:text="Dont have account? Register Here"
+        android:textSize="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

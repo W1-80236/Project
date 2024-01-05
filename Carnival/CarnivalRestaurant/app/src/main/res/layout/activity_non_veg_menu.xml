@@ -8,17 +8,20 @@
     tools:context=".activity.NonVegMenuActivity">
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="#D4C1F6"
-        app:title="               Carnival Restaurant"
-        android:id="@+id/toolBar"/>
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:id="@+id/toolBar"
+        app:titleTextColor="@android:color/white"
+        app:layout_scrollFlags="scroll|enterAlways"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:textSize="20dp"
         android:gravity="center"
+        android:textStyle="bold"
         android:text="Non-Veg Menu Card"/>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:gravity="center"
@@ -34,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/imageView"
             android:layout_marginTop="6dp"
-            android:onClick="vegMenu"
+            android:onClick="VegMenu"
             android:text="Go To Veg Menu Card!" />
     </RelativeLayout>
     <ScrollView
@@ -54,23 +57,26 @@
                     android:gravity="center"/>
                 <TextView
                     android:text="Name"
+                    android:textStyle="bold"
                     android:textSize="15dp"
                     android:padding="5dp"
                     android:gravity="center"/>
                 <TextView
                     android:text="Price"
+                    android:textStyle="bold"
                     android:textSize="15dp"
                     android:padding="5dp"
                     android:gravity="center"/>
                 <TextView
                     android:text="Quantity"
+                    android:textStyle="bold"
                     android:textSize="15dp"
                     android:padding="5dp"
                     android:gravity="center"/>
             </TableRow>
             <TableRow>
                 <ImageView
-                    android:src="@drawable/ch"
+                    android:src="@drawable/ch2"
                     android:layout_height="100dp"
                     android:layout_width="100dp"
                     android:padding="5dp"
@@ -85,15 +91,17 @@
                     android:gravity="center"/>
                 <Spinner
                     android:id="@+id/spinner1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     />
             </TableRow>
             <TableRow>
-                <TextView
-                    android:text="1"
+                <ImageView
+                    android:src="@drawable/cf"
+                    android:layout_height="100dp"
+                    android:layout_width="100dp"
                     android:padding="5dp"
-                    android:gravity="center"/>
+                    />
                 <TextView
                     android:text="Chicken Fry"
                     android:padding="5dp"
@@ -109,10 +117,12 @@
                     />
             </TableRow>
             <TableRow>
-                <TextView
-                    android:text="1"
+                <ImageView
+                    android:src="@drawable/ct"
+                    android:layout_height="100dp"
+                    android:layout_width="100dp"
                     android:padding="5dp"
-                    android:gravity="center"/>
+                    />
                 <TextView
                     android:text="Tandoori Chicken"
                     android:padding="5dp"
@@ -134,5 +144,5 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Place Your Order"
-        android:onClick="placedOrder"/>
+        android:onClick="PlacedOrder"/>
 </LinearLayout>

@@ -16,7 +16,7 @@
         android:text="Carnival Restaurant
          Veg | NonVeg"
         android:textStyle="italic"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="180dp"
         android:textColorHighlight="@color/black"
         android:layout_marginBottom="10dp"
         android:textColor="@color/black"
@@ -62,7 +62,7 @@
     <TextView
         android:id="@+id/textForgotPassword"
         android:layout_marginTop="10dp"
-        android:onClick="forgotpassword"
+        android:onClick="ForgotPassword"
         android:textColor="@color/black"
         android:text="Forgot Password?"
         android:textSize="15dp"
@@ -74,8 +74,7 @@
         android:onClick="login"
         android:layout_marginTop="10dp"
         android:text="Login"
-        android:backgroundTint="#E91E63"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"/>
 
     <TextView

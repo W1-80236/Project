@@ -1,0 +1,7 @@
+{
+    "server":"localhost",
+    "database":"carnival_db",
+    "user":"root",
+    "password":"manager",
+    "port":"9898"
+}

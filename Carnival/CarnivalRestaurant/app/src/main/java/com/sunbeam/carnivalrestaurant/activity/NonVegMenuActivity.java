@@ -1,6 +1,7 @@
 package com.sunbeam.carnivalrestaurant.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,11 +13,16 @@ import com.sunbeam.carnivalrestaurant.R;
 
 public class NonVegMenuActivity extends AppCompatActivity {
 
+<<<<<<< HEAD
 
+=======
+    Toolbar toolBar;
+>>>>>>> origin/main
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_non_veg_menu);
+<<<<<<< HEAD
 
         // Initialize and set up click listeners for each item's buttons
         setupButtonClickListeners();
@@ -61,11 +67,18 @@ public class NonVegMenuActivity extends AppCompatActivity {
     }
 
     public void vegMenu(View view)
+=======
+        toolBar = findViewById(R.id.toolBar);
+        setSupportActionBar(toolBar);
+        getSupportActionBar().setTitle("              Carnival Restaurant");
+    }
+    public void VegMenu(View view)
+>>>>>>> origin/main
     {
         startActivity(new Intent(this, VegMenuActivity.class));
     }
 
-    public void placedOrder(View view)
+    public void PlacedOrder(View view)
     {
         startActivity(new Intent(this, DetailsActivity.class));
     }

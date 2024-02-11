@@ -1,5 +1,11 @@
 package com.sunbeam.carnivalrestaurant.activity;
 import androidx.appcompat.app.AppCompatActivity;
+<<<<<<< HEAD
+=======
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.RecyclerView;
+
+>>>>>>> origin/main
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -23,12 +29,22 @@ import retrofit2.Response;
 public class VegMenuActivity extends AppCompatActivity {
     TextView textIdli;
 
+    Toolbar toolBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_veg_menu);
+<<<<<<< HEAD
       //  textIdli=findViewById(R.id.textIdli);
         setupButtonClickListeners();
+=======
+        toolBar = findViewById(R.id.toolBar);
+        setSupportActionBar(toolBar);
+        getSupportActionBar().setTitle("              Carnival Restaurant");
+    }
+    public void NonVegMenu(View view)
+    {
+>>>>>>> origin/main
 
     }
 
@@ -74,7 +90,7 @@ public class VegMenuActivity extends AppCompatActivity {
         startActivity(new Intent(this, NonVegMenuActivity.class));
     }
 
-    public void placedOrder(View view)
+    public void PlacedOrder(View view)
     {
         Food food = new Food();
         food.setFood_name(textIdli.getText().toString());

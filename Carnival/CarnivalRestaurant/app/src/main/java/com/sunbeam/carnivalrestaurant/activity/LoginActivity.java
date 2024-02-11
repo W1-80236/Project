@@ -80,7 +80,7 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(new Intent(this, RegistrationActivity.class));
 
     }
-    public void forgotpassword(View view){
+    public void ForgotPassword (View view){
         startActivity(new Intent(this, ResetPasswordActivity.class));
 
     }

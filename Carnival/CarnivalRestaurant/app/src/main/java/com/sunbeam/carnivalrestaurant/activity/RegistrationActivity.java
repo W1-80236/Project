@@ -1,6 +1,7 @@
 package com.sunbeam.carnivalrestaurant.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,11 +19,15 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class RegistrationActivity extends AppCompatActivity {
+    Toolbar toolBar;
 EditText editFName, editLName, editEmail,editPassword,editMobile, editConfirmPassword;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
+        toolBar = findViewById(R.id.toolBar);
+        setSupportActionBar(toolBar);
+        getSupportActionBar().setTitle("              Carnival Restaurant");
         editFName = findViewById(R.id.editFName);
         editLName = findViewById(R.id.editLName);
         editEmail =  findViewById(R.id.editEmail);

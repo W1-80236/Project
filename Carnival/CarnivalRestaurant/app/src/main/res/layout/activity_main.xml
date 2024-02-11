@@ -9,24 +9,37 @@
     tools:context=".activity.MainActivity">
 
     <androidx.appcompat.widget.Toolbar
-        android:background="#D4C1F6"
-        android:id="@+id/toolBar"
-        app:title="  Welcome To Carnival Restaurant! "
-        android:layout_marginBottom="20dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:id="@+id/toolBar"
+        app:titleTextColor="@android:color/white"
+        app:layout_scrollFlags="scroll|enterAlways"/>
+
     <TextView
         android:gravity="center"
         android:layout_marginTop="120dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
+<<<<<<< HEAD
         android:text="--Please Select Menu--"
         android:textColor="@color/black"
+=======
+        android:text="PLEASE SELECT THE MENU!"
+        android:textStyle="bold"
+>>>>>>> origin/main
         android:textSize="25dp"/>
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:src="@drawable/res"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         android:orientation="horizontal"
         >
         <Button
@@ -54,7 +67,6 @@
         android:layout_weight="0.1"
         android:layout_width="390dp"
         android:layout_height="80dp"
-        android:src="@drawable/main"
         android:id="@+id/imgMain"/>
     <Button
         android:text="Send Notification"

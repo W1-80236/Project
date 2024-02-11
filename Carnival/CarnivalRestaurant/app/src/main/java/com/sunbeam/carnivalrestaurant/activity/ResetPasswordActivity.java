@@ -1,6 +1,7 @@
 package com.sunbeam.carnivalrestaurant.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,12 +19,22 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ResetPasswordActivity extends AppCompatActivity {
+<<<<<<< HEAD
     EditText editPassword, editConfirmPassword, editMobile;
     Customer customer = new Customer();
 
+=======
+    Toolbar toolBar;
+EditText editPassword, editConfirmPassword;
+
+Customer customer = new Customer();
+>>>>>>> origin/main
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        toolBar = findViewById(R.id.toolBar);
+       // setSupportActionBar(toolBar);
+       // getSupportActionBar().setTitle("              Carnival Restaurant");
         setContentView(R.layout.activity_reset_password);
         editPassword = findViewById(R.id.editPassword);
         editMobile = findViewById(R.id.editMobile);

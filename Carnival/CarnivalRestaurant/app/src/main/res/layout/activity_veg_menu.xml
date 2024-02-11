@@ -10,17 +10,34 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolBar"
         android:layout_width="match_parent"
+<<<<<<< HEAD
         android:layout_height="60dp"
         android:background="#D4C1F6"
         app:title="Carnival Restaurant" />
+=======
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:id="@+id/toolBar"
+        app:titleTextColor="@android:color/white"
+        app:layout_scrollFlags="scroll|enterAlways"/>
+
+>>>>>>> origin/main
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
+<<<<<<< HEAD
         android:gravity="center"
         android:text="Veg Menu Card"
         android:textSize="20sp" />
+=======
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:text="Veg Menu Card"/>
+
+>>>>>>> origin/main
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -29,16 +46,23 @@
 
         <!-- Assume this is your top image section -->
         <ImageView
-            android:id="@+id/imageView"
             android:layout_width="200dp"
+<<<<<<< HEAD
             android:layout_height="100dp"
             android:src="@drawable/res" />
+=======
+            android:layout_height="200dp"
+            android:id="@+id/imageView"
+            android:src="@drawable/res"/>
+>>>>>>> origin/main
 
         <Button
-            android:id="@+id/btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="NonVegMenu"
+            android:id="@+id/btn"
             android:layout_below="@+id/imageView"
+<<<<<<< HEAD
             android:layout_marginTop="6dp"
             android:text="Go To NonVeg Menu Card!"
             android:onClick="nonvegMenu" />
@@ -57,14 +81,130 @@
         tools:listitem="@layout/list_items" />
 
     <!-- Button for placing order -->
+=======
+            android:text="Go To Non-Veg Menu Card"/>
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TableLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:stretchColumns="1">
+
+            <TableRow>
+                <TextView
+                    android:text=""
+                    android:textSize="15dp"
+                    android:padding="5dp"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:text="Name"
+                    android:textStyle="bold"
+                    android:textSize="15dp"
+                    android:padding="5dp"
+                    android:gravity="center"/>
+                <TextView
+                    android:text="Price"
+                    android:textStyle="bold"
+                    android:textSize="15dp"
+                    android:padding="5dp"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:text="Quantity"
+                    android:textStyle="bold"
+                    android:textSize="15dp"
+                    android:padding="5dp"
+                    android:gravity="center"/>
+
+            </TableRow>
+
+            <TableRow>
+                <ImageView
+                    android:src="@drawable/idli"
+                    android:layout_height="100dp"
+                    android:layout_width="100dp"
+                    android:padding="5dp"
+                    />
+                <TextView
+                    android:text="Idli-Samber"
+                    android:padding="5dp"
+                    android:gravity="center"/>
+                <TextView
+                    android:text="30"
+                    android:padding="5dp"
+                    android:gravity="center"/>
+                <Spinner
+                    android:id="@+id/spinner1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+            </TableRow>
+            <TableRow>
+                <ImageView
+                    android:src="@drawable/manchurian"
+                    android:layout_height="100dp"
+                    android:layout_width="100dp"
+                    android:padding="5dp"
+                    />
+                <TextView
+                    android:text="Gobi-Manchurian"
+                    android:padding="5dp"
+                    android:gravity="center"/>
+                <TextView
+                    android:text="40"
+                    android:padding="5dp"
+                    android:gravity="center"/>
+                <Spinner
+                    android:id="@+id/spinner2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+            </TableRow>
+            <TableRow>
+                <ImageView
+                    android:src="@drawable/meduvada"
+                    android:layout_height="100dp"
+                    android:layout_width="100dp"
+                    android:padding="5dp"
+                    />
+                <TextView
+                    android:text="Medu-Vada"
+                    android:padding="5dp"
+                    android:gravity="center"/>
+                <TextView
+                    android:text="30"
+                    android:padding="5dp"
+                    android:gravity="center"/>
+                <Spinner
+                    android:id="@+id/spinner3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+            </TableRow>
+        </TableLayout>
+    </ScrollView>
+
+>>>>>>> origin/main
     <Button
         android:id="@+id/placeOrderButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Place Order"
         android:layout_gravity="center"
+<<<<<<< HEAD
         android:layout_margin="16dp"
         android:textColor="@android:color/white"
         android:onClick="placeOrder" />
 
+=======
+        android:text="Place Your Order"
+        android:onClick="PlacedOrder"/>
+>>>>>>> origin/main
 </LinearLayout>
+

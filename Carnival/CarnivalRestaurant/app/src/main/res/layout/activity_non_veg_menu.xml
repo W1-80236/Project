@@ -8,17 +8,20 @@
     tools:context=".activity.NonVegMenuActivity">
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="#D4C1F6"
-        app:title="               Carnival Restaurant"
-        android:id="@+id/toolBar"/>
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:id="@+id/toolBar"
+        app:titleTextColor="@android:color/white"
+        app:layout_scrollFlags="scroll|enterAlways"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:textSize="20dp"
         android:gravity="center"
+        android:textStyle="bold"
         android:text="Non-Veg Menu Card"/>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:gravity="center"
@@ -34,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/imageView"
             android:layout_marginTop="6dp"
-            android:onClick="vegMenu"
+            android:onClick="VegMenu"
             android:text="Go To Veg Menu Card!" />
     </RelativeLayout>
 
@@ -43,6 +46,7 @@
         android:layout_height="450dp">
         <LinearLayout
             android:layout_width="match_parent"
+<<<<<<< HEAD
             android:layout_height="match_parent"
             android:orientation="vertical">
             <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -61,6 +65,43 @@
                     android:layout_alignParentTop="true"
                     android:layout_marginEnd="16dp"/>
 
+=======
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:stretchColumns="1">
+            <TableRow>
+                <TextView
+                    android:text=""
+                    android:textSize="15dp"
+                    android:padding="5dp"
+                    android:gravity="center"/>
+                <TextView
+                    android:text="Name"
+                    android:textStyle="bold"
+                    android:textSize="15dp"
+                    android:padding="5dp"
+                    android:gravity="center"/>
+                <TextView
+                    android:text="Price"
+                    android:textStyle="bold"
+                    android:textSize="15dp"
+                    android:padding="5dp"
+                    android:gravity="center"/>
+                <TextView
+                    android:text="Quantity"
+                    android:textStyle="bold"
+                    android:textSize="15dp"
+                    android:padding="5dp"
+                    android:gravity="center"/>
+            </TableRow>
+            <TableRow>
+                <ImageView
+                    android:src="@drawable/ch2"
+                    android:layout_height="100dp"
+                    android:layout_width="100dp"
+                    android:padding="5dp"
+                    />
+>>>>>>> origin/main
                 <TextView
                     android:id="@+id/textch"
                     android:layout_width="wrap_content"
@@ -71,6 +112,7 @@
                     android:layout_alignTop="@id/imagech" />
 
                 <TextView
+<<<<<<< HEAD
                     android:id="@+id/pricech"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -98,6 +140,49 @@
                     android:layout_alignStart="@id/pricech"
                     android:layout_marginTop="8dp" />
 
+=======
+                    android:text="250"
+                    android:padding="5dp"
+                    android:gravity="center"/>
+                <Spinner
+                    android:id="@+id/spinner1"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    />
+            </TableRow>
+            <TableRow>
+                <ImageView
+                    android:src="@drawable/cf"
+                    android:layout_height="100dp"
+                    android:layout_width="100dp"
+                    android:padding="5dp"
+                    />
+                <TextView
+                    android:text="Chicken Fry"
+                    android:padding="5dp"
+                    android:gravity="center"/>
+                <TextView
+                    android:text="150"
+                    android:padding="5dp"
+                    android:gravity="center"/>
+                <Spinner
+                    android:id="@+id/spinner2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+            </TableRow>
+            <TableRow>
+                <ImageView
+                    android:src="@drawable/ct"
+                    android:layout_height="100dp"
+                    android:layout_width="100dp"
+                    android:padding="5dp"
+                    />
+                <TextView
+                    android:text="Tandoori Chicken"
+                    android:padding="5dp"
+                    android:gravity="center"/>
+>>>>>>> origin/main
                 <TextView
                     android:id="@+id/quantity1"
                     android:layout_width="wrap_content"
@@ -1166,6 +1251,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Place Your Order"
+<<<<<<< HEAD
         android:onClick="placedOrder"/>
 
+=======
+        android:onClick="PlacedOrder"/>
+>>>>>>> origin/main
 </LinearLayout>

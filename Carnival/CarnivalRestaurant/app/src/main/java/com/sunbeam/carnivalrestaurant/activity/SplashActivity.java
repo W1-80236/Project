@@ -8,6 +8,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import com.sunbeam.carnivalrestaurant.R;
+import com.sunbeam.carnivalrestaurant.utility.CarnivalConstants;
 
 public class SplashActivity extends AppCompatActivity {
     ImageView imageSplash;
@@ -21,8 +22,13 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
                 try {
-                    Thread.sleep(2000);
-                    startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+                    Thread.sleep(1000);
+                    if(getSharedPreferences(CarnivalConstants.SHARED_PREFERENCE_FILE_NAME,MODE_PRIVATE)
+                            .getBoolean(CarnivalConstants.LOGIN_STATUS,false))
+                        startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                    else
+                        startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+
                     finish();
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);

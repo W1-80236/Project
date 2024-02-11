@@ -38,29 +38,29 @@ EditText editFName, editLName, editEmail,editPassword,editMobile, editConfirmPas
         customer.setMobile_no(editMobile.getText().toString());
         customer.setPassword(editPassword.getText().toString());
        startActivity(new Intent(this, LoginActivity.class));
-//        if(customer.getEmail().equals("") || customer.getPassword().equals(""))
-//            Toast.makeText(this, "email or password cannot be empty", Toast.LENGTH_SHORT).show();
-//        else {
-//            RetrofitClient.getInstance().getApi().registerCustomer(customer).enqueue(new Callback<JsonObject>() {
-//                @Override
-//                public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-//                    if(response.body().get("status").getAsString().equals("success")){
-//                        finish();
-//                    }
-//                    else {
-//                        if (response.body().get("error").getAsJsonObject().get("errno").getAsInt() == 1062)
-//                            Toast.makeText(RegistrationActivity.this, "email already exists", Toast.LENGTH_SHORT).show();
-//                        if (response.body().get("error").getAsJsonObject().get("errno").getAsInt() == 1406)
-//                            Toast.makeText(RegistrationActivity.this, "mobile number is incorrect", Toast.LENGTH_SHORT).show();
-//                    }
-//                }
-//
-//                @Override
-//                public void onFailure(Call<JsonObject> call, Throwable t) {
-//                    Toast.makeText(RegistrationActivity.this, "Something went wrong while registration", Toast.LENGTH_SHORT).show();
-//                }
-//            });
-//        }
+       if(customer.getEmail().equals("") || customer.getPassword().equals(""))
+            Toast.makeText(this, "email or password cannot be empty", Toast.LENGTH_SHORT).show();
+       else {
+            RetrofitClient.getInstance().getApi().registerCustomer(customer).enqueue(new Callback<JsonObject>() {
+                @Override
+                public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                    if(response.body().get("status").getAsString().equals("success")){
+                        finish();
+                    }
+                    else {
+                        if (response.body().get("error").getAsJsonObject().get("errno").getAsInt() == 1062)
+                            Toast.makeText(RegistrationActivity.this, "email already exists", Toast.LENGTH_SHORT).show();
+                        if (response.body().get("error").getAsJsonObject().get("errno").getAsInt() == 1406)
+                            Toast.makeText(RegistrationActivity.this, "mobile number is incorrect", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<JsonObject> call, Throwable t) {
+                    Toast.makeText(RegistrationActivity.this, "Something went wrong while registration", Toast.LENGTH_SHORT).show();
+               }
+           });
+       }
     }
     public void cancel(View view){
        startActivity(new Intent(this, LoginActivity.class));

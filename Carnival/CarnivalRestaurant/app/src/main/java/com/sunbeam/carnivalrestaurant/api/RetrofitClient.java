@@ -1,26 +1,29 @@
 package com.sunbeam.carnivalrestaurant.api;
 
+import android.util.Log;
+
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
-
     private static RetrofitClient retrofitClient = null;
     private API api;
-    private RetrofitClient(){
+
+    private RetrofitClient() {
         api = new Retrofit.Builder()
                 .baseUrl(API.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
                 .create(API.class);
     }
-    public static RetrofitClient getInstance(){
-        if(retrofitClient == null)
+
+    public static RetrofitClient getInstance() {
+        if (retrofitClient == null)
             retrofitClient = new RetrofitClient();
         return retrofitClient;
     }
-    public API getApi(){
 
+    public API getApi() {
         return api;
     }
 }

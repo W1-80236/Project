@@ -16,11 +16,7 @@
         android:text="Carnival Restaurant
          Veg | NonVeg"
         android:textStyle="italic"
-<<<<<<< HEAD
         android:layout_marginTop="190dp"
-=======
-        android:layout_marginTop="180dp"
->>>>>>> origin/main
         android:textColorHighlight="@color/black"
         android:layout_marginBottom="10dp"
         android:textColor="@color/black"
@@ -40,8 +36,9 @@
     <EditText
         android:textColor="@color/black"
         android:layout_margin="10dp"
-        android:id="@+id/editMobile"
-        android:hint="Enter Your Mobile No "
+        android:id="@+id/editEmail"
+        android:hint="Enter Your Email "
+        android:inputType="textEmailAddress"
         android:textColorHint="@color/black"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
@@ -66,7 +63,7 @@
     <TextView
         android:id="@+id/textForgotPassword"
         android:layout_marginTop="10dp"
-        android:onClick="ForgotPassword"
+        android:onClick="forgotpassword"
         android:textColor="@color/black"
         android:text="Forgot Password?"
         android:textSize="15dp"
@@ -78,7 +75,8 @@
         android:onClick="login"
         android:layout_marginTop="10dp"
         android:text="Login"
-        android:layout_width="150dp"
+        android:backgroundTint="#E91E63"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
     <TextView
@@ -86,7 +84,7 @@
         android:layout_marginTop="10dp"
         android:onClick="register"
         android:textColor="@color/black"
-        android:text="Dont have account? Register Here"
+        android:text="Don't have account? Register Here"
         android:textSize="15dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>

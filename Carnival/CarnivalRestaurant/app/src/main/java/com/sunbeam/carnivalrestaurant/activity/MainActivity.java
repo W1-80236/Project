@@ -27,8 +27,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         toolbar = findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("              Carnival Restaurant");
-
     }
 
     @Override
@@ -49,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-        public void veg(View view){
+    public void veg(View view){
         startActivity(new Intent(this, VegMenuActivity.class));
     }
     public void nonVeg(View view){

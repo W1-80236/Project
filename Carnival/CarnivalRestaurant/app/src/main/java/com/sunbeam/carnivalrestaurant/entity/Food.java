@@ -19,6 +19,8 @@ public class Food implements Serializable {
         this.food_type = food_type;
     }
 
+
+
     public int getFood_id() {
         return food_id;
     }

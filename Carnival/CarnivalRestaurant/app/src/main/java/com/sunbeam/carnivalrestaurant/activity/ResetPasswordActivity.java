@@ -1,7 +1,6 @@
 package com.sunbeam.carnivalrestaurant.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,64 +18,55 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ResetPasswordActivity extends AppCompatActivity {
-<<<<<<< HEAD
-    EditText editPassword, editConfirmPassword, editMobile;
+    EditText editPassword, editConfirmPassword, editEmail;
     Customer customer = new Customer();
 
-=======
-    Toolbar toolBar;
-EditText editPassword, editConfirmPassword;
-
-Customer customer = new Customer();
->>>>>>> origin/main
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        toolBar = findViewById(R.id.toolBar);
-       // setSupportActionBar(toolBar);
-       // getSupportActionBar().setTitle("              Carnival Restaurant");
         setContentView(R.layout.activity_reset_password);
         editPassword = findViewById(R.id.editPassword);
-        editMobile = findViewById(R.id.editMobile);
+        editEmail = findViewById(R.id.editEmail);
         editConfirmPassword = findViewById(R.id.editConfirmPassword);
     }
 
     public void changePassword(View view) {
-        String mobileNo = editMobile.getText().toString();
+        String email = editEmail.getText().toString();
         String newPwd = editPassword.getText().toString();
         String confPwd = editConfirmPassword.getText().toString();
-        customer.setPassword(confPwd);
 
         if (!newPwd.equals(confPwd)) {
             Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show();
             return;
-        }
+        } else {
+            customer.setPassword(confPwd);
 
-        RetrofitClient.getInstance().getApi().editPassword(mobileNo, customer).enqueue(new Callback<JsonObject>() {
+            RetrofitClient.getInstance().getApi().editPassword(email, customer).enqueue(new Callback<JsonObject>() {
+                @Override
+                public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                    Log.e("API", String.valueOf(response));
+                    Log.e("API", email);
+                    Log.e("API", confPwd);
+                    Log.e("API", customer.toString());
 
-            @Override
-            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                Log.e("API", String.valueOf(response));
-                Log.e("API", mobileNo);Log.e("API", confPwd);
-                Log.e("API", mobileNo);Log.e("API", String.valueOf(customer));
-                if (response.isSuccessful()) {
-                    Toast.makeText(ResetPasswordActivity.this, "Password changed successfully", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(ResetPasswordActivity.this, LoginActivity.class));
-                    finish();
-                } else {
-                    Toast.makeText(ResetPasswordActivity.this, "Failed to change password", Toast.LENGTH_SHORT).show();
+                    if (response.isSuccessful() && response.body() != null && email==customer.getEmail()) {
+                        Toast.makeText(ResetPasswordActivity.this, "Password changed successfully", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(ResetPasswordActivity.this, LoginActivity.class));
+                        finish();
+                    } else {
+                        Toast.makeText(ResetPasswordActivity.this, "please enter registered email", Toast.LENGTH_SHORT).show();
+                    }
                 }
-            }
 
-            @Override
-            public void onFailure(Call<JsonObject> call, Throwable t) {
-                Toast.makeText(ResetPasswordActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+                @Override
+                public void onFailure(Call<JsonObject> call, Throwable t) {
+                    Toast.makeText(ResetPasswordActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
-
-    public void back(View view) {
-        startActivity(new Intent(this, LoginActivity.class));
-        finish();
+    public void back (View view){
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
+        }
     }
-}

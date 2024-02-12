@@ -23,19 +23,19 @@ import retrofit2.Response;
 
 
 public class LoginActivity extends AppCompatActivity {
-    EditText editMobile, editPassword;
+    EditText editEmail, editPassword;
     CheckBox checkboxRememberMe;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        editMobile = findViewById(R.id.editMobile);
+        editEmail = findViewById(R.id.editEmail);
         editPassword = findViewById(R.id.editPassword);
         checkboxRememberMe = findViewById(R.id.checkboxRememberMe);
     }
     public void login(View view){
        Customer customer = new Customer();
-        customer.setMobile_no(editMobile.getText().toString());
+        customer.setEmail(editEmail.getText().toString());
         customer.setPassword(editPassword.getText().toString());
         Log.e("Login activity","Login activity"+customer);
 
@@ -80,7 +80,7 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(new Intent(this, RegistrationActivity.class));
 
     }
-    public void ForgotPassword (View view){
+    public void forgotpassword(View view){
         startActivity(new Intent(this, ResetPasswordActivity.class));
 
     }

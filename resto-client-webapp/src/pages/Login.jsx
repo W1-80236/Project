@@ -1,65 +1,86 @@
-//import React, { useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import axios from "axios";
-// import { useHistory } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { useState} from 'react'
+import { Link,useNavigate } from 'react-router-dom';
 import './Login.css';
-import { Form } from 'react-bootstrap';
+import { toast } from 'react-toastify'
 
+import { loginCustomer} from '../services/customer'
 
-
-//const axios = require('axios');
-
-function Login() {
-   
-
+    export function Login() {
+    
+        const [email, setEmail] = useState('')
+        const [password, setPassword] = useState('')
+      
+        const navigate = useNavigate()
+      
+        const onLogin = async () => {
+          if (email.length == 0) {
+            toast.warn('Enter Email')
+          } else if (password.length == 0) {
+            toast.warn('Enter Password')
+          } else {
+            // make the api call
+            const result = await loginCustomer(email, password)
+            if (result['status'] == 'success') {
+              // cache the token
+              const token = result['data']['token']
+              sessionStorage['token'] = token
+      
+              toast.success('Logged In Successfully,Welcome to the Carnival Restaurant')
+              navigate('/home')
+            } else {
+              toast.error(result['error'])
+            }
+          }
+        }
+      
     return (
         <>
-
         <div className='login-page'>
             <header className='mt-5'>
                 <div className='container h-100 d-flex align-items-center justify-content-center'>
-                    <h1 className='text-light'>Sign IN</h1>
+                    <h1 className='text-light'>Customer Login</h1>
                 </div>
             </header>
             </div>
-
             
-            <div className='container my-5'>
-          
-                    <div className='col-lg-6 d-flex justify-content-center'>
-                     
-                    <Form>
-                            <Form.Group className='row mb-3'>
-                                <div className='col-md-6'>
-                                    <Form.Label htmlFor='email'>Email</Form.Label>
-                                    <Form.Control type='text' id='email' />
-                                </div>
-                                
-                                <br/>
-                                <br/>
-                                <div className='col-md-6'>
-                                    <Form.Label htmlFor='password'>Password</Form.Label>
-                                    <Form.Control type='password' id='password' />
-                
-                                </div>
-                                </Form.Group>
-                                <Link className="col-md-6" to="/forgotpassword">Forgot Password?</Link>
-                                <br/>
-
-                                <Link className="col-md-7" to="/register">Register Here..</Link>
-                                <br/>
-                                <br/>
-                               <button type="submit"  class="btn btn-success btn-lg">Sign In</button>
-                            </Form>
-                      
-                    </div>
-                     
-                </div>
-                
-               
-
-
+            <div className='row'>
+        <div className='col'></div>
+        <div className='col'>
+          <div className='form mt-3'>
+            <div className='mb-3'>
+              <label htmlFor=''>Email</label>
+              <input
+                onChange={(e) => setEmail(e.target.value)}
+                type='email'
+                placeholder='abc@test.com'
+                className='form-control'
+              />
+            </div>
+            <div className='mb-3'>
+              <label htmlFor=''>Password</label>
+              <input
+                onChange={(e) => setPassword(e.target.value)}
+                type='password'
+                placeholder='xxxxxxxx'
+                className='form-control'
+              />
+            </div>
+            <div className='mb-3'>
+              <div>
+                Don't have an account? <Link to='/register'>Register here</Link>
+              </div>
+              <div>
+                Forgot Password <Link to='/forgotPassword'>Click here</Link>
+              </div>
+              <button onClick={onLogin} className='btn btn-success btn-lg mt-2'>
+                Login
+              </button>
+            </div>
+          </div>
+        </div>
+        <div className='col'></div>
+      </div>
     </>
 
   );

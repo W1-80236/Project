@@ -1,5 +1,4 @@
-
-.register-page header {
+.forgot-page header {
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../utils/img/dinner.jpg);
     height: 50vh;
 }

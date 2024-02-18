@@ -1,37 +1,43 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import { signupCustomer } from '../services/customer'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './Register.css';
 
-export function Signup() {
-  const [firstName, setFirstName] = useState('')
-  const [lastName, setLastName] = useState('')
+import { registerCustomer } from '../services/customer'
+
+export function Register() {
+  const [cust_firstName, setFirstName] = useState('')
+  const [cust_lastName, setLastName] = useState('')
   const [email, setEmail] = useState('')
+  const [mobile_no, setMobile] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
 
   // get the navigation function
   const navigate = useNavigate()
 
-  const onSignup = async () => {
-    if (firstName.length == 0) {
-      toast.warn('enter first name')
-    } else if (lastName.length == 0) {
-      toast.warn('enter last name')
+  const onRegister = async () => {
+    if (cust_firstName.length == 0) {
+      toast.warn('Enter First Name!')
+    } else if (cust_lastName.length == 0) {
+      toast.warn('Enter Last Name!')
+    } else if (mobile_no.length == 0) {
+      toast.warn('Enter Mobile No.!')
     } else if (email.length == 0) {
-      toast.warn('enter email')
+      toast.warn('Enter Email!')
     } else if (password.length == 0) {
-      toast.warn('enter password')
+      toast.warn('Enter Password!')
     } else if (confirmPassword.length == 0) {
-      toast.warn('enter confirm password')
+      toast.warn('Enter Confirm Password!')
     } else if (password != confirmPassword) {
-      toast.warn('password does not match')
+      toast.warn('Password Does Not Match!')
     } else {
       // make the api call
-      const result = await signupUser(firstName, lastName, email, password)
+      const result = await registerCustomer(cust_firstName, cust_lastName, email, mobile_no, password)
       if (result['status'] == 'success') {
-        toast.success('Successfully registered the user')
-        navigate('/')
+        toast.success('Successfully Registered the Customer')
+        navigate('/login')
       } else {
         toast.error(result['error'])
       }
@@ -40,9 +46,16 @@ export function Signup() {
 
   return (
     <>
-      <h1 className='title'>Signup</h1>
-
-      <div className='row'>
+    <div className='register-page'>
+            <header className='mt-5'>
+                <div className='container h-100 d-flex align-items-center justify-content-center'>
+                    <h1 className='text-light'>Registration</h1>
+                </div>
+            </header>
+            </div>
+     
+    <div className='container my-5'>
+            <div className='row'>
         <div className='col'></div>
         <div className='col'>
           <div className='form'>
@@ -70,6 +83,16 @@ export function Signup() {
                 placeholder='abc@test.com'
                 className='form-control'
               />
+              </div>
+      
+              <div className='mb-3'>
+              <label htmlFor=''>Mobile</label>
+              <input
+                onChange={(e) => setMobile(e.target.value)}
+                type='mobile'
+                placeholder='0000000000'
+                className='form-control'
+              />
             </div>
             <div className='mb-3'>
               <label htmlFor=''>Password</label>
@@ -91,18 +114,20 @@ export function Signup() {
             </div>
             <div className='mb-3'>
               <div>
-                Already got an account? <Link to='/'>Signin here</Link>
+                Already got an account? <Link to='/'>Login here</Link>
               </div>
-              <button onClick={onSignup} className='btn btn-primary mt-2'>
-                Signup
+              <button onClick={onRegister} className='btn btn-success btn-lg mt-3'>
+                Register
               </button>
             </div>
           </div>
         </div>
         <div className='col'></div>
       </div>
+      </div>
+
     </>
   )
 }
 
-export default Signup
+export default Register;

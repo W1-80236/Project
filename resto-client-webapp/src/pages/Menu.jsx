@@ -1,7 +1,6 @@
 import React from 'react';
 import './Menu.css';
 import { Card, CardBody, CardText, CardTitle, CardImg } from 'react-bootstrap';
-import VegMenuImg from '../utils/img/breakfast.jpg';
 import NonVegMenuImg from '../utils/img/lunch.jpg';
 import Idali from '../utils/img/idli.jpg';
 import Manchurian from '../utils/img/manchurian.jpg';
@@ -146,11 +145,9 @@ function Menu() {
             <div className='veg my-5'>
                 <div className='container'>
                     <h2 className='text-center fs-1 mb-4 mb-lg-5 text-uppercase fw-bold text-success'>Veg Menu</h2>
-                    <div className='row flex-column-reverse flex-lg-row'>
-                        {/* <div className='col-lg-6 d-flex justify-content-center'>
-                            { <img src={VegMenuImg} className='img-fluid w-75 mt-4 mt-lg-0' alt="" /> }
-                        </div> */}
-                        <div className='col-lg-6 d-flex flex-column justify-content-around'>
+                    {/* <div className='row flex-column-reverse flex-lg-row'> */}
+            
+                        <div className='col-lg-6 d-flex flex-column justify-content-around align-items-center'>
                             {VegMenu.map((veg) => (
                                 <div key={veg.id}>
                                     <Card className='border-0'>
@@ -165,12 +162,13 @@ function Menu() {
                                                 {veg.price}
                                             </CardText>
                                                 <CardImg src={veg.image} alt={veg.name} className='card-img-top' />
+                                                
                                         </CardBody>
                                     </Card>
                                 </div>
                             ))}
                         </div>
-                    </div>
+                    {/* </div> */}
                 </div>
             </div>
 

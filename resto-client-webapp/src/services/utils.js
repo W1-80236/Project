@@ -1,7 +1,7 @@
-import config from '../config'
+const SERVER_URL = "http://localhost:9898"
 
 export function createUrl(path) {
-  return `${config.server}/${path}`
+  return `${SERVER_URL}/${path}`
 }
 
 export function createError(error) {

@@ -1,14 +1,14 @@
 import axios from 'axios'
 import { createError, createUrl } from './utils'
 
-export async function signupUser(firstName, lastName, email, mobile,  password) {
+export async function registerCustomer(cust_first_name, cust_last_name, email, mobile_no,  password) {
   try {
-    const url = createUrl('customer/signup')
+    const url = createUrl('customer/register')
     const body = {
-      firstName,
-      lastName,
+      cust_first_name,
+      cust_last_name,
       email,
-      mobile,
+      mobile_no,
       password
      
     }
@@ -19,9 +19,9 @@ export async function signupUser(firstName, lastName, email, mobile,  password) 
   }
 }
 
-export async function signinUser(email, password) {
+export async function loginCustomer(email, password) {
   try {
-    const url = createUrl('customer/signin')
+    const url = createUrl('customer/login')
     const body = {
       email,
       password,

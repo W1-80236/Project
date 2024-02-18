@@ -10,17 +10,14 @@ import Person5 from '../utils/img/person5.jpg';
 
 export function OurTeam() {
     return (
-        <div className="reviews-section container">
-            <h2 className="text-center mb-5 text-uppercase fw-bold fs-1">Restaurant Team
-            
-            
-            </h2>
-            <div className="row g-4">
+        <div className="team-section container">
+            <h2 className="text-center mb-5 text-uppercase fw-bold fs-1">Restaurant Team</h2>
+            <div className="row g-5">
                 <div className="col-lg-6">
                     <Card className="h-100 shadow">
                         <CardBody>
                             <div className="p-4">
-                                <CardText>
+                                <CardText  style={{ color: 'black' }}>
                                     "Hello! I'm Shruti from Pune ".
                                 </CardText>
                             </div>
@@ -35,7 +32,7 @@ export function OurTeam() {
                     <Card className="h-100 shadow">
                         <CardBody>
                             <div className="p-4">
-                                <CardText>
+                                <CardText  style={{ color: 'black' }}>
                                 "Hello! I'm Payal from Latur ".
                                 </CardText>
                             </div>
@@ -50,14 +47,13 @@ export function OurTeam() {
                     <Card className="h-100 shadow">
                         <CardBody>
                             <div className="p-4">
-                                <CardText>
-                                "Hello! I'm Swapnali from Nashik ".
-                                </CardText>
+                                <CardText  style={{ color: 'black' }}>
+                                "Hello! I'm Kalyani from Nagpur ".                                </CardText>
                             </div>
                         </CardBody>
                         <CardFooter className="d-flex align-items-center">
                             <img src={Person3} className="img-fluid rounded-circle mx-3 shadow" alt="" />
-                            <CardTitle className="text-success">Swapnali Mahajan</CardTitle>
+                            <CardTitle className="text-success">Kalyani Ramteke</CardTitle>
                         </CardFooter>
                     </Card>
                 </div>
@@ -65,7 +61,7 @@ export function OurTeam() {
                     <Card className="h-100 shadow">
                         <CardBody>
                             <div className="p-4">
-                                <CardText>
+                                <CardText style={{ color: 'black' }}>
                                 "Hello! I'm Tejaswini from Sangli ".
                                 </CardText>
                             </div>
@@ -80,14 +76,14 @@ export function OurTeam() {
                     <Card className="h-100 shadow">
                         <CardBody>
                             <div className="p-4">
-                                <CardText>
-                                "Hello! I'm Kalyani from Nagpur ".
+                                <CardText  style={{ color: 'black' }}>
+                                "Hello! I'm Swapnali from Nashik ".
                                 </CardText>
                             </div>
                         </CardBody>
                         <CardFooter className="d-flex align-items-center">
                             <img src={Person5} className="img-fluid rounded-circle mx-3 shadow" alt="" />
-                            <CardTitle className="text-success">Kalyani Ramteke</CardTitle>
+                            <CardTitle className="text-success">Swapnali Mahajan</CardTitle>
                         </CardFooter>
                     </Card>
                 </div>

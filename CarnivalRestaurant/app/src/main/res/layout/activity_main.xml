@@ -32,9 +32,32 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:textStyle="bold"
-        android:text="Please Select the Menu And Enjoy Your Meal..."
+        android:text="Please Choose any one of the Table According to your choice And Enjoy Your Meal..."
         android:textColor="@color/black"
         android:textSize="25dp"/>
+    <RadioGroup
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RadioButton
+            android:layout_marginLeft="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+            android:textStyle="bold"
+        android:text="Table1"/>
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:layout_marginLeft="30dp"
+            android:text="Table2"/>
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:layout_marginLeft="30dp"
+            android:text="Table3"/></RadioGroup>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -43,36 +66,26 @@
         <Button
             android:layout_marginTop="30dp"
             android:layout_marginBottom="16dp"
-            android:layout_marginLeft="60dp"
-            android:id="@+id/btnVeg"
+            android:layout_marginLeft="120dp"
+            android:id="@+id/btnMenu"
+            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="VEG MENU"
-            android:onClick="veg"/>
-
-        <Button
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="16dp"
-            android:layout_marginLeft="20dp"
-            android:layout_toRightOf="@+id/btnVeg"
-            android:id="@+id/btnNonveg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="NON-VEG MENU"
-            android:onClick="nonVeg"/>
+            android:text="View Menu List"
+            android:onClick="menu"/>
     </LinearLayout>
     <ImageView
         android:layout_weight="0.1"
-        android:layout_width="390dp"
+        android:layout_width="410dp"
         android:layout_height="80dp"
         android:src="@drawable/main"
         android:id="@+id/imgMain"/>
-    <Button
-        android:text="Send Notification"
-        android:onClick="sendNotification"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="20dp"/>
+<!--    <Button-->
+<!--        android:text="Send Notification"-->
+<!--        android:onClick="sendNotification"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:layout_marginBottom="20dp"/>-->
 
 </LinearLayout>

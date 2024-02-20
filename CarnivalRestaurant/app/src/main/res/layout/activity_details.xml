@@ -38,6 +38,7 @@
         android:layout_marginTop="50dp"
         android:id="@+id/textName"
         android:text="name : "
+        android:layout_marginLeft="20dp"
         android:textSize="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
@@ -46,13 +47,15 @@
         android:id="@+id/textPrice"
         android:text="Price: "
         android:textSize="16dp"
+        android:layout_marginLeft="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <TextView
         android:layout_marginTop="10dp"
         android:id="@+id/textQuantity"
-        android:text="quantity "
+        android:text="quantity: "
         android:textSize="16dp"
+        android:layout_marginLeft="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
@@ -62,6 +65,7 @@
         android:layout_gravity="center"
         android:text="Place Order"
         android:textSize="20dp"
+        android:id="@+id/btnPlaceOrder"
         android:backgroundTint="#36A8F4"
         android:layout_width="200dp"
         android:layout_height="wrap_content"/>

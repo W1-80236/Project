@@ -17,16 +17,16 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".activity.PlaceOrderActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.ViewCartActivity"
             android:exported="false" />
         <activity
             android:name=".activity.DetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.NonVegMenuActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activity.VegMenuActivity"
+            android:name=".activity.MenuActivity"
             android:exported="false" />
         <activity
             android:name=".activity.ResetPasswordActivity"

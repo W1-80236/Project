@@ -15,14 +15,13 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.sunbeam.carnivalrestaurant.R;
 import com.sunbeam.carnivalrestaurant.activity.DetailsActivity;
+import com.sunbeam.carnivalrestaurant.activity.ViewCartActivity;
 import com.sunbeam.carnivalrestaurant.api.API;
 import com.sunbeam.carnivalrestaurant.api.RetrofitClient;
 import com.sunbeam.carnivalrestaurant.entity.Cart;
-import com.sunbeam.carnivalrestaurant.entity.Customer;
 import com.sunbeam.carnivalrestaurant.entity.Food;
 
 import java.util.List;
@@ -31,64 +30,48 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class VegListAdapter extends RecyclerView.Adapter<VegListAdapter.MyViewHolder> {
+public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MyViewHolder> {
 
     Context context;
-    List<Food> vegList;
+    List<Food> menuList;
     Food food;
    int customer_id;
 
-    public VegListAdapter(Context context, List<Food>vegList,int customer_id) {
+    public MenuAdapter(Context context, List<Food>menuList, int customer_id) {
         this.context = context;
-        this.vegList = vegList;
+        this.menuList = menuList;
         this.customer_id=customer_id;
     }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.list_veg,null);
+        View view = LayoutInflater.from(context).inflate(R.layout.list_menu,null);
         return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        Food food = vegList.get(position);
+        Food food = menuList.get(position);
         holder.textName.setText(food.getFood_name());
         holder.textPrice.setText("₹"+food.getFood_price());
 
 //        holder.textName.setText(vegList.get(position).getFood_name());
 //        holder.textPrice.setText(String.valueOf(vegList.get(position).getFood_price()));
 //        holder.textQuantity.setText(vegList.get(position).getQuantity()); // Set initial quantity
-        Glide.with(context).load(API.BASE_URL + "/food_tb/images/" + food.getImage()).into(holder.imageView);
-        // Increment quantity when '+' button is clicked
-//        holder.buttonIncrement.setOnClickListener(v -> {
-//            int quantity = Integer.parseInt(holder.textQuantity.getText().toString());
-//            quantity++;
-//            holder.textQuantity.setText(String.valueOf(quantity));
-//            food.setQuantity(quantity);
-//        });
+        Glide.with(context).load(API.BASE_URL + "food_tb/images/" + food.getImage()).into(holder.imageView);
 
-        // Decrement quantity when '-' button is clicked
-//        holder.buttonDecrement.setOnClickListener(v -> {
-//            int quantity = Integer.parseInt(holder.textQuantity.getText().toString());
-//            if (quantity > 0) {
-//                quantity--;
-//                holder.textQuantity.setText(String.valueOf(quantity));
-//                food.setQuantity(quantity);
-//            }
-//        });
     }
 
     @Override
     public int getItemCount() {
-        return vegList.size();
+        return menuList.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView textName, textPrice, textQuantity;
         ImageView imageView;
-//        Button buttonIncrement, buttonDecrement;
+
          Button addCartBtn;
 
         public MyViewHolder(@NonNull View itemView) {
@@ -98,13 +81,11 @@ public class VegListAdapter extends RecyclerView.Adapter<VegListAdapter.MyViewHo
             textQuantity = itemView.findViewById(R.id.textQuantity);
             imageView = itemView.findViewById(R.id.imageView);
             addCartBtn = itemView.findViewById(R.id.addCartBtn);
-//            buttonIncrement = itemView.findViewById(R.id.buttonIncrement);
-//            buttonDecrement = itemView.findViewById(R.id.buttonDecrement);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Food food= vegList.get(getAdapterPosition());
+                    Food food= menuList.get(getAdapterPosition());
 
                     Intent intent = new Intent(context, DetailsActivity.class);
                     intent.putExtra("food", food);
@@ -113,20 +94,21 @@ public class VegListAdapter extends RecyclerView.Adapter<VegListAdapter.MyViewHo
             });
 
 
-            //add Product to cart
+            //add menu to cart
             addCartBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Cart cart = new Cart();
-                    Food food = vegList.get(getAdapterPosition());
-                   Log.e("VegListAdapter", "" + customer_id);
+                    Food food = menuList.get(getAdapterPosition());
+                   Log.e("MenuAdapter", "" + customer_id);
+
 
                     int total = food.getQuantity() * food.getFood_price();
-                    Log.e("VegListAdapter", "" + food.getFood_id() + "  " + food.getQuantity() + "  " + food.getFood_price() + "  " + total);
+                    Log.e("MenuAdapter", "" + food.getFood_id() + "  " + food.getQuantity() + "  " + food.getFood_price() + "  " + total);
                     cart.setCustomer_id(customer_id);
                     cart.setFood_id(food.getFood_id());
                     cart.setQuantity(0);
-                    cart.setFood_price(food.getFood_price());
+                    cart.setPrice(food.getFood_price());
                     cart.setTotal(total);
 
                     RetrofitClient.getInstance().getApi().addCart(cart).enqueue(new Callback<JsonObject>() {
@@ -152,28 +134,90 @@ public class VegListAdapter extends RecyclerView.Adapter<VegListAdapter.MyViewHo
                         @Override
                         public void onFailure(Call<JsonObject> call, Throwable t) {
 
-                            Toast.makeText(context, "something went wrong while adding cart!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, "something went wrong while adding to cart!", Toast.LENGTH_SHORT).show();
                         }
                     });
 
                 }
 
-//       public void addCartCall(Food food) {
-//            int customer_id =
-//            RetrofitClient.getInstance().getApi().addCart().enqueue(new Callback<JsonObject>() {
+            });
+
+//            addCartBtn.setOnClickListener(new View.OnClickListener() {
 //                @Override
-//                public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+//                public void onClick(View v) {
+//                    // Get the current quantity of the food item
+//                    int currentQuantity = Integer.parseInt(textQuantity.getText().toString());
 //
-//                }
+//                    // Increment the quantity by 1
+//                    int newQuantity = currentQuantity + 1;
+//                    textQuantity.setText(String.valueOf(newQuantity));
 //
-//                @Override
-//                public void onFailure(Call<JsonObject> call, Throwable t) {
+//                    // Update the cart on the server
+//                    Cart cart = new Cart();
+//                    cart.setCustomer_id(customer_id);
+//                    cart.setFood_id(food.getFood_id());
+//                    cart.setQuantity(newQuantity);
+//                    cart.setPrice(food.getFood_price());
+//                    cart.setTotal(food.getFood_price() * newQuantity);
 //
+//                    RetrofitClient.getInstance().getApi().addCart(cart).enqueue(new Callback<JsonObject>() {
+//                        @Override
+//                        public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+//                            if (response.isSuccessful() && response.body() != null && response.body().has("status")) {
+//                                String status = response.body().get("status").getAsString();
+//                                if (status.equals("success")) {
+//                                    Toast.makeText(context, "Item added to cart", Toast.LENGTH_SHORT).show();
+//                                } else {
+//                                    Toast.makeText(context, "Failed to add item to cart", Toast.LENGTH_SHORT).show();
+//                                }
+//                            } else {
+//                                Toast.makeText(context, "Failed to add item to cart", Toast.LENGTH_SHORT).show();
+//                            }
+//                        }
+//
+//                        @Override
+//                        public void onFailure(Call<JsonObject> call, Throwable t) {
+//                            Toast.makeText(context, "Something went wrong while adding item to cart", Toast.LENGTH_SHORT).show();
+//                            Log.e("API Error", t.getMessage(), t);
+//                        }
+//                    });
 //                }
 //            });
+//
 
-//       }
-            });
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -5,10 +5,12 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +20,7 @@ import com.google.gson.JsonObject;
 import com.sunbeam.carnivalrestaurant.R;
 import com.sunbeam.carnivalrestaurant.adapter.CartAdapter;
 import com.sunbeam.carnivalrestaurant.api.RetrofitClient;
+import com.sunbeam.carnivalrestaurant.entity.Cart;
 import com.sunbeam.carnivalrestaurant.entity.Food;
 import com.sunbeam.carnivalrestaurant.utility.CarnivalConstants;
 
@@ -32,8 +35,11 @@ public class ViewCartActivity extends AppCompatActivity {
     Toolbar toolbar;
     RecyclerView recyclerView;
     List<Food> cartList;
-
     CartAdapter cartAdapter;
+    Context context;
+    int initialTotal;
+    Cart cart;
+    Button btnTotal, btnProceed;
     Food food;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,10 +47,11 @@ public class ViewCartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view_cart);
         toolbar = findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
+        btnTotal =findViewById(R.id.btnTotal);
+        btnProceed=findViewById(R.id.btnProceed);
         recyclerView = findViewById(R.id.recyclerView);
         cartList = new ArrayList<>();
-
-        cartAdapter= new CartAdapter(cartList,this);
+        cartAdapter = new CartAdapter(cartList, this,btnTotal,btnProceed);
         recyclerView.setAdapter(cartAdapter);
         recyclerView.setLayoutManager(new GridLayoutManager(this,1));
 
@@ -69,11 +76,11 @@ public class ViewCartActivity extends AppCompatActivity {
                         for (JsonElement element : array) {
                             JsonObject object = element.getAsJsonObject();
                             Food food = new Food();
-                            food.setFood_id(object.get("id").getAsInt());
-                            food.setFood_name(object.get("name").getAsString());
+                            food.setFood_id(object.get("food_id").getAsInt());
+                            food.setFood_name(object.get("food_name").getAsString());
                             food.setImage(object.get("image").getAsString());
-                            food.setFood_price(object.get("price").getAsInt());
-                       //     food.setQuantity(object.get("qty").getAsInt());
+                            food.setFood_price(object.get("food_price").getAsInt());
+                          // food.setQuantity(object.get("quantity").getAsInt());
                             cartList.add(food);
                         }
                         cartAdapter.notifyDataSetChanged();
@@ -85,16 +92,13 @@ public class ViewCartActivity extends AppCompatActivity {
                 }
             }
 
-
             @Override
             public void onFailure(Call<JsonObject> call, Throwable t) {
                 Log.e("onFailure","onFailure");
                 Toast.makeText(ViewCartActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
             }
         });
-
-
-
     }
+
 }
 

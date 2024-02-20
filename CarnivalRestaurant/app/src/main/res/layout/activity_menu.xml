@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activity.VegMenuActivity">
+    tools:context=".activity.MenuActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
@@ -13,6 +13,11 @@
         android:background="#D4C1F6"
         app:title="               Carnival Restaurant"
         android:id="@+id/toolBar"/>
+<!--    <Button-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="viewCart"-->
+<!--        android:onClick="viewCart"/>-->
 
     <TextView
         android:layout_width="match_parent"
@@ -21,7 +26,7 @@
         android:textSize="20dp"
         android:textStyle="bold"
         android:gravity="center"
-        android:text="Veg Menu Card"/>
+        android:text="Menu Card"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -34,14 +39,7 @@
             android:gravity="center"
             android:src="@drawable/res"/>
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="nonVegMenu"
-            android:id="@+id/btn"
-            android:layout_marginTop="10dp"
-            android:layout_below="@+id/imageView"
-            android:text="Go To Non-Veg Menu Card"/>
+
     </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView

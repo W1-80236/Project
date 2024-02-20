@@ -15,7 +15,8 @@ import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface API {
-    public static final String BASE_URL = "http:192.168.2.26:9898";
+    public static final String BASE_URL = "http://192.168.65.137:9898/";
+
 
     @GET("/customer_tb")
     public Call<JsonObject>getAllCustomers();
@@ -33,16 +34,23 @@ public interface API {
     @DELETE("/customer/{customer_id}")
     public Call<JsonObject>deleteCustomer(@Path("customer_id") int customer_id);
 
-//    @POST("/order_tb")
-//    public Call<JsonObject> foodOrder(@Body Order order);
-//
+    @POST("/order_tb")
+   public Call<JsonObject> foodOrder(@Body Order order);
+
     @GET("/food_tb/fooddetails")
     public Call<JsonObject>getAllFood();
 
-    @GET("/cart/getCart/{customer_id}")
+    @GET("/cart_tb/getCart/{customer_id}")
     public Call<JsonObject>getCart(@Path("customer_id") int customer_id);
 
-    @POST("/cart/addCart")
+    @POST("/cart_tb/addCart")
     public Call<JsonObject>addCart(@Body Cart cart);
+
+    @DELETE("/cart_tb/deleteCart/{food_id}/{customer_id}")
+    public Call<JsonObject> deleteCartItem(@Path("food_id") int food_id,@Path("customer_id") int customer_id);
+
+    @POST("/order_tb/{customer_id}")
+    public Call<JsonObject> placeOrder(@Path("customer_id") int customer_id);
+
 
 }

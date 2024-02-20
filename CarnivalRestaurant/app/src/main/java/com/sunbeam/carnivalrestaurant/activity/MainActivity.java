@@ -47,36 +47,33 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void veg(View view){
-        startActivity(new Intent(this, VegMenuActivity.class));
-    }
-    public void nonVeg(View view){
-        startActivity(new Intent(this, NonVegMenuActivity.class));
+    public void menu(View view){
+        startActivity(new Intent(this, MenuActivity.class));
     }
 
-    public void sendNotification(View view) {
-        //create channel for the notification
-        NotificationChannel notificationChannel = new NotificationChannel("channel_id", "channel_name", NotificationManager.IMPORTANCE_DEFAULT);
+//    public void sendNotification(View view) {
+//        //create channel for the notification
+//        NotificationChannel notificationChannel = new NotificationChannel("channel_id", "channel_name", NotificationManager.IMPORTANCE_DEFAULT);
+//
+//        //cretae the object of Notification manager
+//        NotificationManager notificationManager = getSystemService(NotificationManager.class);
+//
+//        // register your notification channel towards the Notification Manager
+//        notificationManager.createNotificationChannel(notificationChannel);
+//
+//        // cretae the way we want the notification
+//        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "channel_id");
+//        builder.setSmallIcon(R.drawable.logo);
+//        builder.setContentTitle("Carnival Restaurant");
+//        builder.setContentText("Payment Received! Thank you for visiting visit Again!! ");
+//
+//        // NotificationManagerCompat object used to send the notification
+//        NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(this);
+//        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+//            return;
+//        }
+//        notificationManagerCompat.notify(1, builder.build());
 
-        //cretae the object of Notification manager
-        NotificationManager notificationManager = getSystemService(NotificationManager.class);
-
-        // register your notification channel towards the Notification Manager
-        notificationManager.createNotificationChannel(notificationChannel);
-
-        // cretae the way we want the notification
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "channel_id");
-        builder.setSmallIcon(R.drawable.logo);
-        builder.setContentTitle("Carnival Restaurant");
-        builder.setContentText("Payment Received! Thank you for visiting visit Again!! ");
-
-        // NotificationManagerCompat object used to send the notification
-        NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(this);
-        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
-        notificationManagerCompat.notify(1, builder.build());
-
-    }
+   // }
 
     }

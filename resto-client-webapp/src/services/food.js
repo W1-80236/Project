@@ -3,7 +3,7 @@ import { createError, createUrl } from './utils'
 
 export async function getAllMenus() {
   try {
-    const url = createUrl('food/')
+    const url = createUrl('food_tb/fooddetails')
     const headers = {
       headers: {
         token: sessionStorage['token'],

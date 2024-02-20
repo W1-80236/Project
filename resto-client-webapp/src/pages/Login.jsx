@@ -26,8 +26,9 @@ import { loginCustomer} from '../services/customer'
               const token = result['data']['token']
               sessionStorage['token'] = token
       
+              navigate('/')
               toast.success('Logged In Successfully,Welcome to the Carnival Restaurant')
-              navigate('/home')
+              
             } else {
               toast.error(result['error'])
             }

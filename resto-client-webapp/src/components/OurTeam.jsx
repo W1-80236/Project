@@ -18,7 +18,9 @@ export function OurTeam() {
                         <CardBody>
                             <div className="p-4">
                                 <CardText  style={{ color: 'black' }}>
-                                    "Hello! I'm Shruti from Pune ".
+                                    "Hello! I'm Shruti from Pune."<br/>
+                                    Contact: +91 7030363130<br/>
+                                    Email: shrutivs0819@gmail.com
                                 </CardText>
                             </div>
                         </CardBody>
@@ -33,7 +35,9 @@ export function OurTeam() {
                         <CardBody>
                             <div className="p-4">
                                 <CardText  style={{ color: 'black' }}>
-                                "Hello! I'm Payal from Latur ".
+                                "Hello! I'm Payal from Latur."<br/>
+                                    Contact: +91 75583 41108<br/>
+                                    Email: payal@gmail.com
                                 </CardText>
                             </div>
                         </CardBody>
@@ -48,7 +52,9 @@ export function OurTeam() {
                         <CardBody>
                             <div className="p-4">
                                 <CardText  style={{ color: 'black' }}>
-                                "Hello! I'm Kalyani from Nagpur ".                                </CardText>
+                                "Hello! I'm Kalyani from Nagpur."<br/>
+                                    Contact: +91 92845 22492<br/>
+                                    Email: kalyani@gmail.com                              </CardText>
                             </div>
                         </CardBody>
                         <CardFooter className="d-flex align-items-center">
@@ -62,7 +68,10 @@ export function OurTeam() {
                         <CardBody>
                             <div className="p-4">
                                 <CardText style={{ color: 'black' }}>
-                                "Hello! I'm Tejaswini from Sangli ".
+                                "Hello! I'm Tejaswini from Sangli."<br/>
+                                    Contact:  +91 94228 45429<br/>
+                                    Email: tejaswini@gmail.com    
+                               
                                 </CardText>
                             </div>
                         </CardBody>
@@ -77,7 +86,10 @@ export function OurTeam() {
                         <CardBody>
                             <div className="p-4">
                                 <CardText  style={{ color: 'black' }}>
-                                "Hello! I'm Swapnali from Nashik ".
+                                "Hello! I'm Swapnali from Nashik."<br/>
+                                    Contact:  +91 97675 09084<br/>
+                                    Email: swapnali@gmail.com    
+
                                 </CardText>
                             </div>
                         </CardBody>

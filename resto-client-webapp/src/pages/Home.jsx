@@ -2,12 +2,26 @@ import React from 'react';
 import { MenuBtn } from '../components/MenuBtn';
 import './Home.css';
 import AboutImg from '../utils/img/about-img.jpg';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ImageGallery } from '../components/ImageGallery';
 import { ContactInfo } from '../components/ContactInfo';
 import ContactImage from '../utils/img/contact-img.jpg';
 
 function Home() {
+    const navigate = useNavigate(); // Initialize navigate function
+
+    // Function to handle clicking on the menu buttons
+    const handleMenuClick = () => {
+        const isLoggedIn = sessionStorage.getItem('token'); // Check if user is logged in
+        if (!isLoggedIn) {
+            navigate('/menu'); // Navigate to login page if not logged in
+        } else {
+            // Handle logic for clicking on the menu buttons
+            // For now, just logging a message
+            console.log("User is logged in. Handle logic for menu button click here.");
+        }
+    };
+
     return (
         <div className='home-page'>
             <header className='h-100 min-vh-100 d-flex align-items-center text-light shadow'>
@@ -16,7 +30,7 @@ function Home() {
                         <div className='col-sm-6 d-flex d-sm-block flex-column align-items-center'>
                             <h2 className='mb-0 text-black fw-bold'>Welcome To</h2>
                             <h1 className='mb-5 text-black fw-bold text-center text-sm-start'>Carnival Restaurant</h1>
-                            <MenuBtn />
+                            <MenuBtn  onClick={handleMenuClick}/>
                         </div>
                     </div>
                 </div>

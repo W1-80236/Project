@@ -1,23 +1,23 @@
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
-function ProtectedRoute(props) {
-  const { Component } = props;
+function ProtectedRoute({ component: Component, ...rest }) {
   const navigate = useNavigate();
+  const location = useLocation();
+  
   useEffect(() => {
     let login = localStorage.getItem('login');
   
     if (!login) {
-      navigate('login');
+      // Store the intended destination before redirecting to the login page
+      localStorage.setItem('destination', location.pathname);
+      navigate('/login');
     }
-    
-  });
-  return (
-   
-      <div>
-        <Component />
-      </div>
+  }, [navigate, location.pathname]);
   
-  );
+  const login = localStorage.getItem('login');
+  
+  return login || rest.public ? <Component {...rest} /> : null;
 }
+
 export default ProtectedRoute;

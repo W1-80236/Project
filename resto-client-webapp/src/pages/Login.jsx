@@ -18,7 +18,11 @@ import { loginCustomer} from '../services/customer'
             toast.warn('Enter Email')
           } else if (password.length == 0) {
             toast.warn('Enter Password')
-          } else {
+          }
+          
+         
+           
+           else  {
             // make the api call
             const result = await loginCustomer(email, password)
             if (result['status'] == 'success') {
@@ -27,7 +31,8 @@ import { loginCustomer} from '../services/customer'
               sessionStorage['token'] = token
       
               navigate('/')
-              toast.success('Logged In Successfully,Welcome to the Carnival Restaurant')
+              toast.success("Logged In Successfully")
+              toast.success("Welcome to the Carnival Restaurant")
               
             } else {
               toast.error(result['error'])

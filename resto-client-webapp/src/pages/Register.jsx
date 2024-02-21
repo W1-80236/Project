@@ -114,7 +114,7 @@ export function Register() {
             </div>
             <div className='mb-3'>
               <div>
-                Already got an account? <Link to='/'>Login here</Link>
+                Already got an account? <Link to='/login'>Login here</Link>
               </div>
               <button onClick={onRegister} className='btn btn-success btn-lg mt-3'>
                 Register

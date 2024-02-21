@@ -43,7 +43,7 @@ function App() {
             <Nav className='me-auto justify-content-end w-100'>
             {isLoggedIn ? null : (
                 <>
-                   <Nav.Link href='/' className='active text-uppercase'>Home</Nav.Link>
+                   <Nav.Link href='/home' className='active text-uppercase'>Home</Nav.Link>
                   <Nav.Link href='/login' className='text-uppercase'>Sign In</Nav.Link>
                   <Nav.Link href='/register' className='text-uppercase'>Register</Nav.Link>
                 </>
@@ -56,7 +56,7 @@ function App() {
               {isLoggedIn && (
                 <>
                   <Nav.Link href='/menu' className='text-uppercase'>Menu</Nav.Link>
-                  <Nav.Link href='/cart' className='text-uppercase'>Cart</Nav.Link>
+                  <Nav.Link href='/cart' className='text-uppercase'>Cart ({cart.items.length})</Nav.Link>
                   <Nav.Link href='/order' className='text-uppercase'>Order</Nav.Link>
                   <Nav.Link href='/logout' onClick={onLogout} className='text-uppercase'>Logout</Nav.Link>
                 </>
@@ -67,7 +67,7 @@ function App() {
       </Navbar>
 
       <Routes>
-        <Route path='/' element={<Home />} />
+        <Route path='/home' element={<Home />} />
         <Route path='/menu' element={<Menu />} />
         <Route path='/about' element={<About />} />
         <Route path='/contact' element={<Contact />} />

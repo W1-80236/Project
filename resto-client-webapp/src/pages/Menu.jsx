@@ -7,9 +7,11 @@ import { toast } from 'react-toastify'
 import { addItem } from '../features/cartSlice'
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux'
+import config from '../config'
 
 function Menu({item}) {
     const [foods, setFoods] = useState([])
+    const dispatch = useDispatch(); 
 
   const loadAllFood = async () => {
     const result = await getAllMenus()
@@ -25,13 +27,14 @@ function Menu({item}) {
     loadAllFood()
   }, [])
 
-  const dispatch = useDispatch()
+ 
+  const addToCart = (food) => {
+    dispatch(addItem( { ...item, quantity:1}));
+    food.isAdded = true;
+     toast.dark(`${food.food_name} added to cart`);
 
-  const addItemToCart = (food) => {
-    dispatch(addItem({ ...item, quantity: 1 }))
-    toast.success(`Added ${food.food_name} to cart`);
 
-  }
+};
     
   
     return (
@@ -44,25 +47,22 @@ function Menu({item}) {
 
             <div className='veg bg-dark py-5'>
     <div className='container'>
-        {/* <h2 className='text-center fs-1 mb-4 mb-lg-5 text-uppercase fw-bold text-success'>Menu Card</h2> */}
         <div className='row'>
-
             <div className='col-lg-6'>
+                <h3 className='text-center text-uppercase text-success mb-4'>Veg Menu</h3>
                 <div className='row'>
-                <h3 className='text-center text-uppercase text-success'>Veg Menu</h3>
-
                     {foods.slice(0, 15).map((food) => (
-                        <div className='col-md-6' key={food.food_id}>
+                        <div className='col-md-6 mb-4' key={food.food_id}>
                             <Card className='border-0'>
+                                <CardImg src={config.server + '/' + food.image} alt={food.food_name} style={{ width: '100%', height: '200px', objectFit: 'cover' }} className='card-img-top' />
                                 <CardBody>
-                                    <CardTitle className='text-center fs-3'>{food.food_name}</CardTitle>
-                                    <CardText className='text-center fs-3 fw-bold text-success'>{food.food_price}</CardText>
-                                    <CardTitle className='text-center fs-3'>{food.food_type}</CardTitle>
-                                    <div className='d-flex justify-content-center'> {/* Center the button */}
-                                                <Button onClick={() => addItemToCart} className='btn btn-success'>Add to Cart</Button>
-                                            </div>
+                                    <CardTitle className='text-center fs-5 mb-2'>{food.food_name}</CardTitle>
+                                    <CardText className='text-center fs-6 text-success mb-2'>Price: ₹{food.food_price}</CardText>
+                                    <CardText className='text-center fs-6 mb-2'>Type: {food.food_type}</CardText>
+                                    <div className='d-flex justify-content-center'>
+                                    <Button onClick={() => addToCart(food)} className='btn btn-success'> {food.isAdded ? 'Added' : 'Add to Cart'}</Button>
 
-                                    {/* <CardImg src={food.food_image} alt={food.food_name} className='card-img-top' /> */}
+                                    </div>
                                 </CardBody>
                             </Card>
                         </div>
@@ -70,34 +70,33 @@ function Menu({item}) {
                 </div>
             </div>
             <div className='col-lg-6'>
+                <h3 className='text-center text-uppercase text-success mb-4'>Non Veg Menu</h3>
                 <div className='row'>
-                <h3 className='text-center text-uppercase text-success'>Non Veg Menu</h3>
                     {foods.slice(15).map((food) => (
-                        <div className='col-md-6' key={food.food_id}>
+                        <div className='col-md-6 mb-4' key={food.food_id}>
                             <Card className='border-0'>
+                                <CardImg src={config.server + '/' + food.image} alt={food.food_name} style={{ width: '100%', height: '200px', objectFit: 'cover' }} className='card-img-top' />
                                 <CardBody>
-                                    <CardTitle className='text-center fs-3'>{food.food_name}</CardTitle>
-                                    <CardText className='text-center fs-3 fw-bold text-success'>{food.food_price}</CardText>
-                                    <CardTitle className='text-center fs-3'>{food.food_type}</CardTitle>
-                                    {/* <CardImg src={food.image} alt={food.food_name} className='card-img-top' /> */}
-                                    <div className='d-flex justify-content-center'> {/* Center the button */}
-                                                <Button onClick={() => addItemToCart} className='btn btn-success'>Add to Cart</Button>
-                                            </div>
+                                    <CardTitle className='text-center fs-5 mb-2'>{food.food_name}</CardTitle>
+                                    <CardText className='text-center fs-6 text-success mb-2'>Price: ₹{food.food_price}</CardText>
+                                    <CardText className='text-center fs-6 mb-2'>Type: {food.food_type}</CardText>
+                                    <div className='d-flex justify-content-center'>
+                                        <Button onClick={() => addToCart(food)} className='btn btn-success'> {food.isAdded ? 'Added' : 'Add to Cart'}</Button>
+                                    </div>
                                 </CardBody>
                             </Card>
                         </div>
                     ))}
                 </div>
-               
+            </div>
             </div>
         </div>
         <div className="text-center mt-4">
                     <Link to="/cart" className="btn btn-success btn-lg">View Cart</Link>
-                </div>
+        </div>
     </div>
 </div>
 
-        </div>
     )
 }
 

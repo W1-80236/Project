@@ -18,7 +18,7 @@ function Home() {
         } else {
             // Handle logic for clicking on the menu buttons
             // For now, just logging a message
-            console.log("User is logged in. Handle logic for menu button click here.");
+            console.log("User is logged in..");
         }
     };
 

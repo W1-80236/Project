@@ -1,0 +1,192 @@
+create database carnival_db;
+
+use carnival_db;
+
+create table admin_tb(id int not null AUTO_INCREMENT primary key,first_name varchar(50),last_name varchar(50),email varchar(50) unique,mobile_no int,password varchar(50),role varchar(50));
+
+insert into admin_tb(first_name,last_name,email,mobile_no,password,role) values("Mukesh","Ambani","mukeshambani@gmail.com",123456,"mukesh","admin"),("omi","kale","omikale@gmail.com",989898,"omi","waitor"),
+("dinu","pore","dinupore@gmail.com",686868,"dinu","waitor"),
+("sanju","more","sanjumore@gmail.com",181818,"omi","waitor");
+
+
+create table customer_tb(customer_id int not null AUTO_INCREMENT primary key,cust_first_name varchar(50),cust_last_name varchar(50),email varchar(50) unique,mobile_no int,password varchar(50));
+
+insert into customer_tb(cust_first_name,cust_last_name,email,mobile_no,password) values("Rahul","Patil","rahulpatil@gmail.com",121212,"rahul"),("Kedar","Dalavi","dedardalavi@gmail.com",818181,"kedar"),
+("Sonam","Sarkar","sonamsarkar@gmail.com",717171,"sonam");
+
+
+create table dinning_tb(dinning_id int primary key,dinning_name varchar(50),id int,foreign key(id) references admin_tb(id));
+
+insert into dinning_tb(dinning_id,dinning_name,id) values(101,"table_1",2),
+(102,"table_2",3),(103,"table_3",4);
+
+
+
+create table food_tb(food_id int primary key,food_name varchar(50),food_price int,food_type varchar(50));
+
+insert into food_tb(food_id,food_name,food_price,food_type) values
+(1,"Idali-Sambaar",30,"veg"),
+(2,"Gobi-manchurian",40,"veg"),
+(3,"Medu-vada",30,"veg"),
+(4,"Paneer Tikka Masala",100,"veg"),
+(5,"Roti",20,"veg"),
+(6,"Naan",120,"veg"),
+(7,"Jeera rice",50,"veg"),
+(8,"Veg Biryani",120,"veg"),
+(9,"Veg Pulaav",110,"veg"),
+(10,"Hakka Noodles",80,"veg"),
+(11,"Pav Bhaji",70,"veg"),
+(12,"Masala Dosa",60,"veg"),
+(13,"Puri Bhaji",80,"veg"),
+(14,"Veg Thali",100,"veg"),
+(15,"Misal Pav",60,"veg"),
+(16,"Chicken Handi",250,"nonveg"),
+(17,"Chicken Fry",150,"nonveg"),
+(18,"Tandoori Chicken",220,"nonveg"),
+(19,"Anda Curry",110,"nonveg"),
+(20,"Chicken Biryani",180,"nonveg"),
+(21,"Mutton Handi",280,"nonveg"),
+(22,"Mutton Biryani",300,"nonveg"),
+(23,"Chicken Thali",220,"nonveg"),
+(24,"Mutton Thali",320,"nonveg"),
+(25,"Chicken 65",100,"nonveg"),
+(26,"Fish Fry",550,"nonveg"),
+(27,"Fish Curry",550,"nonveg"),
+(28,"Butter Chicken",350,"nonveg"),
+(29,"Chicken Lolipop",250,"nonveg"),
+(30,"Chicken Kabaab",150,"nonveg");
+
+
+create table order_tb(order_id int not null AUTO_INCREMENT primary key,customer_id int,foreign key(customer_id) references customer_tb(customer_id),food_id int,foreign key(food_id) references food_tb(food_id),dinning_id int,foreign key(dinning_id) references dinning_tb(dinning_id),quantity int,food_total int,order_datetime DATETIME DEFAULT CURRENT_TIMESTAMP);
+
+
+create table bill_tb(bill_id int AUTO_INCREMENT primary key,customer_id int,foreign key(customer_id) references customer_tb(customer_id),dinning_id int,foreign key(dinning_id) references dinning_tb(dinning_id),total_bill int,bill_status varchar(50),bill_datetime DATETIME DEFAULT CURRENT_TIMESTAMP);
+
+
+
+--------------------*------------------*--------------------*--------------*------------------
+OUTPUT
+
+root>
+root>select * from admin_tb;
++----+------------+-----------+------------------------+-----------+----------+--------+
+| id | first_name | last_name | email                  | mobile_no | password | role   |
++----+------------+-----------+------------------------+-----------+----------+--------+
+|  1 | Mukesh     | Ambani    | mukeshambani@gmail.com |    123456 | mukesh   | admin  |
+|  2 | omi        | kale      | omikale@gmail.com      |    989898 | omi      | waitor |
+|  3 | dinu       | pore      | dinupore@gmail.com     |    686868 | dinu     | waitor |
+|  4 | sanju      | more      | sanjumore@gmail.com    |    181818 | omi      | waitor |
++----+------------+-----------+------------------------+-----------+----------+--------+
+4 rows in set (0.00 sec)
+
+root>select * from customer_tb;
++-------------+-----------------+----------------+-----------------------+-----------+----------+
+| customer_id | cust_first_name | cust_last_name | email                 | mobile_no | password |
++-------------+-----------------+----------------+-----------------------+-----------+----------+
+|           1 | Rahul           | Patil          | rahulpatil@gmail.com  |    121212 | rahul    |
+|           2 | Kedar           | Dalavi         | dedardalavi@gmail.com |    818181 | kedar    |
+|           3 | Sonam           | Sarkar         | sonamsarkar@gmail.com |    717171 | sonam    |
++-------------+-----------------+----------------+-----------------------+-----------+----------+
+3 rows in set (0.00 sec)
+
+root>select * from dinning_tb;
++------------+--------------+------+
+| dinning_id | dinning_name | id   |
++------------+--------------+------+
+|        101 | table_1      |    2 |
+|        102 | table_2      |    3 |
+|        103 | table_3      |    4 |
++------------+--------------+------+
+3 rows in set (0.00 sec)
+
+root>select * from food_tb;
++---------+---------------------+------------+-----------+
+| food_id | food_name           | food_price | food_type |
++---------+---------------------+------------+-----------+
+|       1 | Idali-Sambaar       |         30 | veg       |
+|       2 | Gobi-manchurian     |         40 | veg       |
+|       3 | Medu-vada           |         30 | veg       |
+|       4 | Paneer Tikka Masala |        100 | veg       |
+|       5 | Roti                |         20 | veg       |
+|       6 | Naan                |        120 | veg       |
+|       7 | Jeera rice          |         50 | veg       |
+|       8 | Veg Biryani         |        120 | veg       |
+|       9 | Veg Pulaav          |        110 | veg       |
+|      10 | Hakka Noodles       |         80 | veg       |
+|      11 | Pav Bhaji           |         70 | veg       |
+|      12 | Masala Dosa         |         60 | veg       |
+|      13 | Puri Bhaji          |         80 | veg       |
+|      14 | Veg Thali           |        100 | veg       |
+|      15 | Misal Pav           |         60 | veg       |
+|      16 | Chicken Handi       |        250 | nonveg    |
+|      17 | Chicken Fry         |        150 | nonveg    |
+|      18 | Tandoori Chicken    |        220 | nonveg    |
+|      19 | Anda Curry          |        110 | nonveg    |
+|      20 | Chicken Biryani     |        180 | nonveg    |
+|      21 | Mutton Handi        |        280 | nonveg    |
+|      22 | Mutton Biryani      |        300 | nonveg    |
+|      23 | Chicken Thali       |        220 | nonveg    |
+|      24 | Mutton Thali        |        320 | nonveg    |
+|      25 | Chicken 65          |        100 | nonveg    |
+|      26 | Fish Fry            |        550 | nonveg    |
+|      27 | Fish Curry          |        550 | nonveg    |
+|      28 | Butter Chicken      |        350 | nonveg    |
+|      29 | Chicken Lolipop     |        250 | nonveg    |
+|      30 | Chicken Kabaab      |        150 | nonveg    |
++---------+---------------------+------------+-----------+
+30 rows in set (0.00 sec)
+
+root>select * from order_tb;
+Empty set (0.01 sec)
+
+root>desc order_tb;
++----------------+----------+------+-----+-------------------+-------------------+
+| Field          | Type     | Null | Key | Default           | Extra             |
++----------------+----------+------+-----+-------------------+-------------------+
+| order_id       | int      | NO   | PRI | NULL              | auto_increment    |
+| customer_id    | int      | YES  | MUL | NULL              |                   |
+| food_id        | int      | YES  | MUL | NULL              |                   |
+| dinning_id     | int      | YES  | MUL | NULL              |                   |
+| quantity       | int      | YES  |     | NULL              |                   |
+| food_total     | int      | YES  |     | NULL              |                   |
+| order_datetime | datetime | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED |
++----------------+----------+------+-----+-------------------+-------------------+
+7 rows in set (0.01 sec)
+
+root>select * from bill_tb;
+Empty set (0.01 sec)
+
+root>desc bill_tb;
++---------------+-------------+------+-----+-------------------+-------------------+
+| Field         | Type        | Null | Key | Default           | Extra             |
++---------------+-------------+------+-----+-------------------+-------------------+
+| bill_id       | int         | NO   | PRI | NULL              | auto_increment    |
+| customer_id   | int         | YES  | MUL | NULL              |                   |
+| dinning_id    | int         | YES  | MUL | NULL              |                   |
+| total_bill    | int         | YES  |     | NULL              |                   |
+| bill_status   | varchar(50) | YES  |     | NULL              |                   |
+| bill_datetime | datetime    | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED |
++---------------+-------------+------+-----+-------------------+-------------------+
+6 rows in set (0.00 sec)
+
+
+ALTER TABLE order_tb ADD COLUMN id INT;
+alter table order_tb ADD CONSTRAINT fk_admin_id FOREIGN KEY (id) REFERENCES admin_tb(id);
+alter table customer_tb Add column token varchar(50);
+Desc customer_tb;
+Desc order_tb;
+ALTER TABLE food_tb ADD COLUMN image BLOB;
+Desc food_tb;
+
+
+
+
+
+
+
+
+
+
+
+
+

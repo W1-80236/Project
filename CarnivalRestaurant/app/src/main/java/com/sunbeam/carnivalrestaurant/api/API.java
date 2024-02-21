@@ -15,7 +15,7 @@ import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface API {
-    public static final String BASE_URL = "http://192.168.65.137:9898/";
+    public static final String BASE_URL = "http://192.168.65.137:9898";
 
 
     @GET("/customer_tb")
@@ -39,6 +39,8 @@ public interface API {
 
     @GET("/food_tb/fooddetails")
     public Call<JsonObject>getAllFood();
+    @GET("/food_tb/images")
+    public Call<JsonObject>getFoodImage();
 
     @GET("/cart_tb/getCart/{customer_id}")
     public Call<JsonObject>getCart(@Path("customer_id") int customer_id);
@@ -51,6 +53,5 @@ public interface API {
 
     @POST("/order_tb/{customer_id}")
     public Call<JsonObject> placeOrder(@Path("customer_id") int customer_id);
-
 
 }

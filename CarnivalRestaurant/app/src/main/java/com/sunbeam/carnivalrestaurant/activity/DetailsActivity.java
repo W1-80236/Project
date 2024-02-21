@@ -2,6 +2,8 @@ package com.sunbeam.carnivalrestaurant.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -49,5 +51,11 @@ public class DetailsActivity extends AppCompatActivity {
                 Toast.makeText(DetailsActivity.this, "Order placed successfully", Toast.LENGTH_SHORT).show();
             }
         });
+
     }
+    public void view(View view) {
+        Intent intent = new Intent(DetailsActivity.this, PlaceOrderActivity.class);
+        startActivity(intent);
+    }
+
 }

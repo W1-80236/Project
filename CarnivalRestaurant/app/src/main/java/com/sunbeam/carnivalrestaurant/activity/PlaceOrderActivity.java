@@ -31,4 +31,12 @@ public class PlaceOrderActivity extends AppCompatActivity {
     }
 });
     }
+    public void showBill(View view) {
+        Intent intent = new Intent(PlaceOrderActivity.this, BillActivity.class);
+        startActivity(intent);
+    }
+    public void back(View view) {
+        Intent intent = new Intent(PlaceOrderActivity.this, MainActivity.class);
+        startActivity(intent);
+    }
 }

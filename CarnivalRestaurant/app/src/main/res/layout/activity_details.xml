@@ -28,9 +28,8 @@
         <ImageView
             android:background="@color/white"
             android:layout_marginTop="60dp"
-            android:layout_marginLeft="55dp"
+            android:layout_marginLeft="80dp"
             android:id="@+id/imageView"
-
             android:layout_width="250dp"
             android:layout_height="300dp"/>
     </LinearLayout>
@@ -45,7 +44,7 @@
     <TextView
         android:layout_marginTop="10dp"
         android:id="@+id/textPrice"
-        android:text="Price: "
+        android:text="Price : "
         android:textSize="16dp"
         android:layout_marginLeft="20dp"
         android:layout_width="match_parent"
@@ -53,22 +52,41 @@
     <TextView
         android:layout_marginTop="10dp"
         android:id="@+id/textQuantity"
-        android:text="quantity: "
+        android:text="quantity : "
         android:textSize="16dp"
         android:layout_marginLeft="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
     <Button
         android:layout_marginTop="40dp"
         android:layout_gravity="center"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="10dp"
         android:text="Place Order"
         android:textSize="20dp"
         android:id="@+id/btnPlaceOrder"
-        android:backgroundTint="#36A8F4"
-        android:layout_width="200dp"
+        android:backgroundTint="#6FB241"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="10dp"
+        android:layout_gravity="center"
+        android:text="View"
+        android:textSize="20dp"
+        android:id="@+id/btnShow"
+        android:layout_marginRight="20dp"
+        android:backgroundTint="#6FB241"
+        android:layout_width="150dp"
+        android:onClick="view"
         android:layout_height="wrap_content"/>
 
+</LinearLayout>
 
 </LinearLayout>

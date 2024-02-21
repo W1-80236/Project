@@ -56,10 +56,10 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MyViewHolder> 
         holder.textName.setText(food.getFood_name());
         holder.textPrice.setText("₹"+food.getFood_price());
 
-//        holder.textName.setText(vegList.get(position).getFood_name());
-//        holder.textPrice.setText(String.valueOf(vegList.get(position).getFood_price()));
-//        holder.textQuantity.setText(vegList.get(position).getQuantity()); // Set initial quantity
-        Glide.with(context).load(API.BASE_URL + "food_tb/images/" + food.getImage()).into(holder.imageView);
+//        holder.textName.setText(menuList.get(position).getFood_name());
+//        holder.textPrice.setText(String.valueOf(menuList.get(position).getFood_price()));
+       // holder.textQuantity.setText(menuList.get(position).getQuantity()); // Set initial quantity
+        Glide.with(context).load(API.BASE_URL + "/food_tb/images/" + food.getImage()).into(holder.imageView);
 
     }
 
@@ -67,11 +67,9 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MyViewHolder> 
     public int getItemCount() {
         return menuList.size();
     }
-
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView textName, textPrice, textQuantity;
         ImageView imageView;
-
          Button addCartBtn;
 
         public MyViewHolder(@NonNull View itemView) {
@@ -92,7 +90,6 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MyViewHolder> 
                     context.startActivity(intent);
                 }
             });
-
 
             //add menu to cart
             addCartBtn.setOnClickListener(new View.OnClickListener() {
@@ -116,8 +113,6 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MyViewHolder> 
                         public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                             if(response.body().get("status").getAsString().equals("success"))
                             {
-           //                    JsonArray jsonArray = response.body().getAsJsonArray("data");
-
                                 if(response.body().getAsJsonObject("data").size()!=0)
                                 {
                                     Toast.makeText(context, "menuItems added to cart", Toast.LENGTH_SHORT).show();
@@ -130,7 +125,6 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MyViewHolder> 
                             }
                         }
 
-
                         @Override
                         public void onFailure(Call<JsonObject> call, Throwable t) {
 
@@ -141,49 +135,6 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MyViewHolder> 
                 }
 
             });
-
-//            addCartBtn.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    // Get the current quantity of the food item
-//                    int currentQuantity = Integer.parseInt(textQuantity.getText().toString());
-//
-//                    // Increment the quantity by 1
-//                    int newQuantity = currentQuantity + 1;
-//                    textQuantity.setText(String.valueOf(newQuantity));
-//
-//                    // Update the cart on the server
-//                    Cart cart = new Cart();
-//                    cart.setCustomer_id(customer_id);
-//                    cart.setFood_id(food.getFood_id());
-//                    cart.setQuantity(newQuantity);
-//                    cart.setPrice(food.getFood_price());
-//                    cart.setTotal(food.getFood_price() * newQuantity);
-//
-//                    RetrofitClient.getInstance().getApi().addCart(cart).enqueue(new Callback<JsonObject>() {
-//                        @Override
-//                        public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-//                            if (response.isSuccessful() && response.body() != null && response.body().has("status")) {
-//                                String status = response.body().get("status").getAsString();
-//                                if (status.equals("success")) {
-//                                    Toast.makeText(context, "Item added to cart", Toast.LENGTH_SHORT).show();
-//                                } else {
-//                                    Toast.makeText(context, "Failed to add item to cart", Toast.LENGTH_SHORT).show();
-//                                }
-//                            } else {
-//                                Toast.makeText(context, "Failed to add item to cart", Toast.LENGTH_SHORT).show();
-//                            }
-//                        }
-//
-//                        @Override
-//                        public void onFailure(Call<JsonObject> call, Throwable t) {
-//                            Toast.makeText(context, "Something went wrong while adding item to cart", Toast.LENGTH_SHORT).show();
-//                            Log.e("API Error", t.getMessage(), t);
-//                        }
-//                    });
-//                }
-//            });
-//
 
         }
     }

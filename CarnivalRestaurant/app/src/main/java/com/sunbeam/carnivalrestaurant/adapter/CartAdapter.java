@@ -38,11 +38,11 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
     Button btnTotal, btnProceed;
 
 
-    public CartAdapter(List<Food> cartList, Context context,Button btnTotal, Button btnProceed) {
+    public CartAdapter(List<Food> cartList, Context context, Button btnTotal, Button btnProceed) {
         this.cartList = cartList;
         this.context = context;
-        this.btnProceed=btnProceed;
-        this.btnTotal=btnTotal;
+        this.btnProceed = btnProceed;
+        this.btnTotal = btnTotal;
 
     }
 
@@ -66,139 +66,147 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
     public int getItemCount() {
         return cartList.size();
     }
+
     class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView textName, textPrice,getTextPrice, textQuantity;
+        TextView textName, textPrice, getTextPrice, textQuantity;
         ImageView imageView;
         Button btnPlus, btnMinus;
-        int quantity =0;
-        int quantityTotal=0;
-        int total=0;
+        int quantity = 0;
+        int quantityTotal = 0;
+        int total = 0;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             textName = itemView.findViewById(R.id.textName);
             textPrice = itemView.findViewById(R.id.textPrice);
+            textQuantity = itemView.findViewById(R.id.textQuantity);
             imageView = itemView.findViewById(R.id.imageView);
             btnPlus = itemView.findViewById(R.id.btnPlus);
             btnMinus = itemView.findViewById(R.id.btnMinus);
-            //Food food = cartList.get(getAdapterPosition());
+            btnTotal = itemView.findViewById(R.id.btnTotal);
+            btnProceed = itemView.findViewById(R.id.btnProceed);
+            // Food food = cartList.get(getAdapterPosition());
             btnPlus.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Log.e("plus::", "initiTotal :::"+initialTotal);
+                    int position = getAdapterPosition();
+                    Log.e("plus::", "initiTotal :::" + initialTotal);
                     quantity++;
-                    textQuantity.setText(""+quantity);
+                    textQuantity.setText("" + quantity);
                     Food food = cartList.get(getAdapterPosition());
-//                    intiTotal = intiTotal + food.getFood_Price();
-                    int Total = Integer.parseInt(btnTotal.getText().toString()+food.getFood_price());
+                    // intialTotal = intiTotal + food.getFood_Price();
+                    int Total = Integer.parseInt(btnTotal.getText().toString()) + food.getFood_price();
                     btnTotal.setText(Integer.toString(Total));
 
-                    btnTotal.setText(Float.toString(Total));
+                    btnTotal.setText(Integer.toString(Total));
                 }
             });
             btnMinus.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    int customer_id = context.getSharedPreferences(CarnivalConstants.SHARED_PREFERENCE_FILE_NAME,Context.MODE_PRIVATE).getInt(CarnivalConstants.CUSTOMER_ID,0);
-                    Food food = cartList.get(getAdapterPosition());
-                    int food_id = food.getFood_id();
-                    Log.e("1st", initialTotal+"");
-                    Log.e("1st", quantity+"");
-                    Log.e("id's", customer_id+"  "+food_id);
-                    if(quantity>0)
-                    {
-                        quantity--;
-                        if(quantity>0) {
-                            textQuantity.setText("" + quantity);
-                        }
-                    }
-
-                    if(quantity==0)
-                    {
-                      RetrofitClient.getInstance().getApi().deleteCartItem(food_id,customer_id).enqueue(new Callback<JsonObject>() {
-                          @Override
-                          public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                              if(response.body().get("status").getAsString().equals("success")){
-                                  cartList.remove(food);
-                                  int Total = Integer.parseInt(btnTotal.getText().toString())-food.getFood_price();
-                                  btnTotal.setText(Integer.toString(Total));
-                                    Toast.makeText(context, "item Removed!", Toast.LENGTH_SHORT).show();
-                                    if(cartList.size()==0)
-                                    {
-                                        context.startActivity(new Intent(context, MainActivity.class));
-                                    }
-                                  notifyDataSetChanged();
-                              }
-                          }
-
-                          @Override
-                          public void onFailure(Call<JsonObject> call, Throwable t) {
-                            Toast.makeText(context, "cant Remove item!", Toast.LENGTH_SHORT).show();
-                          }
-                      });
-                    }
-                    else {
-                        int Total = Integer.parseInt(btnTotal.getText().toString()) - food.getFood_price();
-                        btnTotal.setText(Float.toString(Total));
-                    }
-                    quantityTotal = quantityTotal  - quantity;
-                }
-            });
-
-            btnProceed.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    if(cartList.size()!=0) {
+                    int postion = getAdapterPosition();
+                    if (postion != RecyclerView.NO_POSITION) {
                         int customer_id = context.getSharedPreferences(CarnivalConstants.SHARED_PREFERENCE_FILE_NAME, Context.MODE_PRIVATE).getInt(CarnivalConstants.CUSTOMER_ID, 0);
+                        Food food = cartList.get(getAdapterPosition());
+                        int food_id = food.getFood_id();
+                        Log.e("1st", initialTotal + "");
+                        Log.e("1st", quantity + "");
+                        Log.e("id's", customer_id + "  " + food_id);
 
-                        RetrofitClient.getInstance().getApi().placeOrder(customer_id).enqueue(new Callback<JsonObject>() {
-                            @Override
-                            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                        if (quantity > 0) {
+                            quantity--;
+                            if (quantity > 0) {
+                                textQuantity.setText("" + quantity);
+                                int Total = Integer.parseInt(btnTotal.getText().toString()) - food.getFood_price(); // Corrected line
+                                btnTotal.setText(Integer.toString(Total));
+                            }
+                        }
 
-                                Log.e("placeOrder", response.body() + "");
+                        if (quantity == 0) {
+                            RetrofitClient.getInstance().getApi().deleteCartItem(food_id, customer_id).enqueue(new Callback<JsonObject>() {
+                                @Override
+                                public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                                    // if(response.body().get("status").getAsString().equals("success")){
+                                    if (response.isSuccessful() && response.body() != null && response.body().has("status") && response.body().get("status").getAsString().equals("success")) {
+                                        cartList.remove(food);
+                                        int Total = Integer.parseInt(btnTotal.getText().toString()) - food.getFood_price();
+                                        btnTotal.setText(Integer.toString(Total));
+                                        Toast.makeText(context, "item Removed!", Toast.LENGTH_SHORT).show();
+                                        if (cartList.size() == 0) {
+                                            context.startActivity(new Intent(context, MainActivity.class));
+                                        }
+                                        notifyDataSetChanged();
+                                    }
 
-                                if (response.body().get("status").getAsString().equals("success")) {
-                                    Log.e("placeOrder", response.body() + "");
-                                    Toast.makeText(context, "order placed", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(context, PlaceOrderActivity.class);
-                                    context.startActivity(intent);
-                                } else {
-                                    Toast.makeText(context, "can't place order!!!!", Toast.LENGTH_SHORT).show();
                                 }
-                            }
 
-                            @Override
-                            public void onFailure(Call<JsonObject> call, Throwable t) {
-                                Toast.makeText(context, "something went wrong while placing order!!!!", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                    }else {
-                        Toast.makeText(context, "Cart is empty!!", Toast.LENGTH_SHORT).show();
+
+                                @Override
+                                public void onFailure(Call<JsonObject> call, Throwable t) {
+                                    Toast.makeText(context, "cant Remove item!", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        } else {
+                            int Total = Integer.parseInt(btnTotal.getText().toString()) - food.getFood_price();
+                            btnTotal.setText(Integer.toString(Total));
+                        }
+                        quantityTotal = quantityTotal - quantity;
                     }
 
-                    Toast.makeText(context, "placeorder clicked", Toast.LENGTH_SHORT).show();
+                    btnProceed.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                            if (cartList.size() != 0) {
+                                int customer_id = context.getSharedPreferences(CarnivalConstants.SHARED_PREFERENCE_FILE_NAME, Context.MODE_PRIVATE).getInt(CarnivalConstants.CUSTOMER_ID, 0);
+
+                                RetrofitClient.getInstance().getApi().placeOrder(customer_id).enqueue(new Callback<JsonObject>() {
+                                    @Override
+                                    public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+
+                                        Log.e("placeOrder", response.body() + "");
+
+                                        if (response.body().get("status").getAsString().equals("success")) {
+                                            Log.e("placeOrder", response.body() + "");
+                                            Toast.makeText(context, "order placed", Toast.LENGTH_SHORT).show();
+                                            Intent intent = new Intent(context, PlaceOrderActivity.class);
+                                            context.startActivity(intent);
+                                        } else {
+                                            Toast.makeText(context, "can't place order!!!!", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<JsonObject> call, Throwable t) {
+                                        Toast.makeText(context, "something went wrong while placing order!!!!", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+
+                            } else {
+                                Toast.makeText(context, "Cart is empty!!", Toast.LENGTH_SHORT).show();
+                            }
+
+                            Toast.makeText(context, "placeorder clicked", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+
+                public void calculatePrice() {
+                    Food food = cartList.get(getAdapterPosition());
+                    int total1 = food.getFood_price() * 1;
+                    int price = food.getFood_price();
+                    total = food.getFood_price() * 1;
+                    if (quantityTotal <= 0) {
+                        total = 0;
+                    } else if (quantityTotal == 1) {
+                        total = total1;
+                    } else {
+                        total = total + (price * 1);
+                        Log.e("total", total + "");
+                    }
+                    btnTotal.setText(total + "");
                 }
             });
-        }
-        public void calculatePrice(){
-            Food food = cartList.get(getAdapterPosition());
-            int total1 = food.getFood_price() * 1;
-            int price = food.getFood_price();
-            total = food.getFood_price()* 1;
-            if(quantityTotal<=0)
-            {
-                total =0;
-            }
-            else if(quantityTotal==1)
-            {
-                total = total1;
-            }
-            else {
-                total = total+(price * 1);
-                Log.e("total" , total+"");
-            }
-            btnTotal.setText(total+"");
         }
     }
 }

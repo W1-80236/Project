@@ -54,10 +54,24 @@
     </LinearLayout>
     <Button
 
-        android:backgroundTint="#258F2A"
+        android:backgroundTint="#C62828"
         android:layout_alignParentBottom="true"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="order placed!!"
+        android:layout_width="120dp"
+       android:layout_marginLeft="50dp"
+        android:layout_marginBottom="20dp"
+        android:layout_height="45dp"
+        android:text="Back"
+        android:onClick="back"
         android:id="@+id/btnPlaceOrder"/>
+    <Button
+
+        android:backgroundTint="#558B2F"
+        android:layout_alignParentBottom="true"
+        android:layout_width="120dp"
+        android:layout_marginLeft="220dp"
+        android:layout_marginBottom="20dp"
+        android:layout_height="45dp"
+        android:onClick="showBill"
+        android:text="View Bill"
+        android:id="@+id/billDetails"/>
 </RelativeLayout>

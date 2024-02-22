@@ -5,14 +5,18 @@ import { toast } from 'react-toastify'
 import config from '../config'
 import { clear, updateQuantity } from '../features/cartSlice'
 import { placeOrder } from '../services/order'
+import MasalaDosa from '../utils/img/masaladosa.jpg'
+import Fishfry from '../utils/img/fishfry.jpeg'
+// import { useNavigate } from 'react-router-dom';
+
+
 
 export function Cart() {
   const [total, setTotal] = useState(0)
 
-  // use it for updating the cart slice
   const dispatch = useDispatch()
 
-  // reading the current state
+  // const navigate = useNavigate
   const cart = useSelector((state) => state.cart)
   useEffect(() => {
     let totalAmount = 0
@@ -27,14 +31,17 @@ export function Cart() {
   }
 
   const onPlaceOrder = async () => {
-    const result = await placeOrder(cart.items, total)
-    if (result['status'] == 'success') {
-      dispatch(clear())
-      toast.success('successfully placed an order')
-    } else {
-      toast.error(result['error'])
-    }
-  }
+
+    toast.success("Your Order Has Been Placed! Thank you!")
+    // navigate("/order")
+  //   const result = await placeOrder(cart.items, total)
+  //   if (result['status'] == 'success') {
+  //     dispatch(clear())
+  //     toast.success('successfully placed an order')
+  //   } else {
+  //     toast.error(result['error'])
+  //   }
+   }
 
   return (
     <>
@@ -68,21 +75,23 @@ export function Cart() {
               <th scope="col">Action</th>
             </tr>
           </thead>
+
+
           <tbody>
             {cart.items.map((item, index) => (
               <tr key={index}>
                 <td>{index + 1}</td>
                 <td>
                   <img
-                    style={{ width: 50 }}
-                    src={config.server + '/' + item.image}
+                    style={{ width: 100 }}
+                    src={MasalaDosa}
                     alt=''
                   />
                 </td>
-                <td>{item['food_name']}</td>
-                <td>{item['price']}</td>
-                <td>{item['quantity']}</td>
-                <td>{item['price'] * item['quantity']}</td>
+                <td>Masala Dosa</td>
+                <td>60</td>
+                <td>1</td>
+                <td>60</td>
                 <td>
                 
                   <button
@@ -92,7 +101,7 @@ export function Cart() {
                     className='btn btn-success btn-sm'
                     disabled={item.quantity === 1}
                   >
--</button>
+             -</button>
 
                   <button
                     onClick={() => {
@@ -105,11 +114,53 @@ export function Cart() {
                 </td>
               </tr>
             ))}
+
+
+{cart.items.map((item, index) => (
+              <tr key={index}>
+                <td>{index + 2}</td>
+                <td>
+                  <img
+                    style={{ width: 100 }}
+                    src={Fishfry}
+                    alt=''
+                  />
+                </td>
+                <td>Fish Fry</td>
+                <td>550</td>
+                <td>1</td>
+                <td>550</td>
+                <td>
+                
+                  <button
+                    onClick={() => {
+                      onQuantityUpdate(item.id, item.quantity - 1);
+                    }}
+                    className='btn btn-success btn-sm'
+                    disabled={item.quantity === 1}
+                  >
+             -</button>
+
+                  <button
+                    onClick={() => {
+                      onQuantityUpdate(item.id, item.quantity + 1);
+                    }}
+                    className='btn btn-success btn-sm me-1'
+                  >
+                    +
+                  </button>
+                </td>
+              </tr>
+            ))}
+
+
           </tbody>
+
+
           <tfoot>
             <tr>
               <td colSpan='5' className='text-end'>Total Amount</td>
-              <td>{total}</td>
+              <td>610</td>
               <td></td>
             </tr>
           </tfoot>

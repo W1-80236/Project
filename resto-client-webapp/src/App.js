@@ -14,6 +14,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Forgot from './pages/Forgot';
 import Cart from './pages/Cart';
+import Dining from './pages/Dining';
 import Order from './pages/Order';
 import { useSelector } from 'react-redux';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -75,6 +76,7 @@ function App() {
         <Route path='/register' element={<Register />} />
         <Route path='/cart' element={<Cart />} />
         <Route path='/order' element={<Order />} />
+        <Route path='/dining' element={<Dining />} />
         <Route path='/forgotPassword' element={<Forgot />} />
       </Routes>
       <ToastContainer />

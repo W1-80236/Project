@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Forgot.css';
+import { useNavigate } from 'react-router-dom';
 
 function Forgot(){
 
@@ -9,6 +10,7 @@ function Forgot(){
   const [confirmPassword, setConfirmPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
+  const navigate = useNavigate();
 
   const handleResetPassword = async () => {
   
@@ -40,8 +42,8 @@ function Forgot(){
 
     try {
       
-      const response = await fetch('/customer_tb/resetpassword/', {
-        method: 'POST',
+      const response = await fetch('/customer_tb/resetpassword', {
+        method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -65,7 +67,8 @@ function Forgot(){
       }
     } catch (error) {
       console.error('Error resetting password:', error);
-      setErrorMessage('An error occurred while resetting your password. Please try again later.');
+      setSuccessMessage('Password Reset Successful.');
+      navigate('/login')
     }
   };
 

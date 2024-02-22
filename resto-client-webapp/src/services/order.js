@@ -13,7 +13,7 @@ export async function placeOrder(items, totalAmount) {
       totalAmount,
       items: items.map((item) => {
         return {
-          pizzaId: item['id'],
+          foodId: item['id'],
           quantity: item['quantity'],
           totalAmount: item['quantity'] * item['price'],
         }

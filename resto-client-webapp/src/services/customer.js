@@ -32,3 +32,5 @@ export async function loginCustomer(email, password) {
     return createError(ex)
   }
 }
+
+

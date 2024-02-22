@@ -22,7 +22,7 @@ export const cartSlice = createSlice({
       const items = state.items
       for (let index = 0; index < items.length; index++) {
         const item = items[index]
-        if (item['food_id'] == itemId) {
+        if (item['id'] == itemId) {
           if (quantity == 0) {
             // delete the item from items
             items.splice(index, 1)

@@ -1,0 +1,42 @@
+.sunbeam-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #f8f8f8; /* Adjust background color as needed */
+  }
+  
+  .logo-container img {
+    width: 100px; /* Adjust logo size as needed */
+  }
+  
+  .info-container {
+    text-align: center;
+  }
+  
+  .restaurant-name {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .dish-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5px;
+  }
+  
+  .dish-name {
+    font-size: 16px;
+    margin-right: 10px;
+  }
+  
+  .veg-non-veg-box {
+    padding: 5px 10px;
+    background-color: #4caf50; /* Green for Veg, Change to red or any other color for Non-Veg */
+    color: #fff;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  

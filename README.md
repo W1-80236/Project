@@ -22,7 +22,7 @@ npm start
 AndroidApp
 Java, Xml, Retrofit, glide, notification services ,expressServer, mysql database.
 ```
-
+The restaurant management system streamlines tasks such as order processing, inventory tracking, employee scheduling, and customer management to enhance operational efficiency and improve overall dining experiences.
 ## Features
 
 - Feature 1: Dinning Booking.

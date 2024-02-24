@@ -33,6 +33,10 @@ The restaurant management system streamlines tasks such as order processing, inv
 
 
 ## Payal Deshmane
+## Shruti Sawant 
+## Tejswini Patil
+## Kalyani Ramteke
+## Swapnali Mahajan
 
 ## Acknowledgments
 
